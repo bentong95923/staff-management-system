@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
+#include <sqlite3.h>
 #include "employee/phone.h"
 #include "employee/name.h"
 #include "employee/employee.h"
-#include <sqlite3.h>
 
 using namespace std;
 
