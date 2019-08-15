@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
-#include "phone.h"
-#include "name.h"
-#include "employee.h"
+#include "employee/phone.h"
+#include "employee/name.h"
+#include "employee/employee.h"
 #include <sqlite3.h>
 
 using namespace std;
@@ -21,7 +21,7 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName)
 void connect_database(sqlite3 **db)
 {
     // Open or create database
-    int rc = sqlite3_open("data.db", db);
+    int rc = sqlite3_open("bin\\data.db", db);
 
     if (rc != SQLITE_OK)
     {
@@ -44,12 +44,13 @@ void create_table(sqlite3 **db)
         DOB DATE,\
         TITLE TEXT NOT NULL,\
         DEPARTMENT TEXT NOT NULL,\
+        LANDLINE TEXT,\
+        EMAIL TEXT NOT NULL,\
         SALARY REAL\
         );";
 
     /* Execute SQL statement */
     int rc = sqlite3_exec(*db, sql, callback, 0, &zErrMsg);
-
     if (rc != SQLITE_OK)
     {
         fprintf(stderr, "SQL error: %s\n", zErrMsg);
@@ -65,7 +66,7 @@ int main()
 {
     // Create database pointer for SQLite
     sqlite3 *db;
-    
+
     connect_database(&db);
     create_table(&db);
     sqlite3_close(db);

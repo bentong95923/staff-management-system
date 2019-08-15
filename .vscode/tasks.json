@@ -7,31 +7,43 @@
             "command": "gcc",
             "args": [
                 "-c",
-                "sqlite3.c"
+                "sqlite\\sqlite3.c",
+                "-o",
+                "bin\\sqlite3.o"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "problemMatcher": []
         },
         {
-            "label": "build staff management system",
+            "label": "build main",
             "type": "shell",
             "command": "g++",
             "args": [
-                "employee.cpp",
-                "name.cpp",
-                "phone.cpp",
+                "employee\\employee.cpp",
+                "employee\\name.cpp",
+                "employee\\phone.cpp",
                 "main.cpp",
-                "sqlite3.o",
+                "bin\\sqlite3.o",
                 "-o",
-                "main"
+                "bin\\main"
             ],
+            "group": "build",
+            "dependsOn": [
+                "build sqlite.o"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "run main",
+            "type": "shell",
+            "command": "bin\\main",
             "group": {
                 "kind": "build",
-                "isDefault": true
+                "isDefault": true,
             },
+            "dependsOn": [
+                "build main"
+            ],
             "problemMatcher": []
         }
     ]
