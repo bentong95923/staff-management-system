@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build sqlite.o",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-c",
+                "sqlite3.c"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build staff management system",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "employee.cpp",
+                "name.cpp",
+                "phone.cpp",
+                "main.cpp",
+                "sqlite3.o",
+                "-o",
+                "main"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
