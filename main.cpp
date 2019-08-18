@@ -87,6 +87,5 @@ int main()
         // create_table(&db); admin
     // }
     sqlite3_close(db);
-
     return 0;
 }

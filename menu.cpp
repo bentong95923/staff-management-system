@@ -33,19 +33,18 @@ void Menu::execute()
     case VIEW:
     {
         /* code */
-        cout << "bye" << endl;
+        cout << "View" << endl;
         break;
     }
     case EDIT:
     {
         /* code */
-        cout << "bye" << endl;
+        cout << "Edit" << endl;
         break;
     }
     case CREATE:
     {
         Create *op = new Create();
-        cout <<"hihi"<<endl;
         op->view();
         op->askUserInput();
         break;
@@ -53,7 +52,7 @@ void Menu::execute()
     case DELETE:
     {
         /* code */
-        cout << "hi" << endl;
+        cout << "Delete" << endl;
         break;
     }
 
