@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "sqliteint.h": "c",
+        "iostream": "cpp",
+        "vector": "cpp"
+    }
+}

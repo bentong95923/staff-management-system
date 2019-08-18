@@ -12,9 +12,10 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName)
     int i;
     for (i = 0; i < argc; i++)
     {
-        printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+        cout << azColName[i] << " = " << (argv[i] ? argv[i] : "NULL") << endl;
+        // printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
     }
-    printf("\n");
+    cout << endl;
     return 0;
 }
 
@@ -25,11 +26,13 @@ void connect_database(sqlite3 **db)
 
     if (rc != SQLITE_OK)
     {
-        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(*db));
+        // fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(*db));
+        cerr << "Can't open database: " << sqlite3_errmsg(*db) << endl;
     }
     else
     {
-        fprintf(stdout, "Opened database successfully\n");
+        // fprintf(stdout, "Opened database successfully\n");
+        cout << "Opened database successfully" << endl;
     }
 }
 
@@ -53,22 +56,76 @@ void create_table(sqlite3 **db)
     int rc = sqlite3_exec(*db, sql, callback, 0, &zErrMsg);
     if (rc != SQLITE_OK)
     {
-        fprintf(stderr, "SQL error: %s\n", zErrMsg);
+        // fprintf(stderr, "SQL error: %s\n", zErrMsg);
+        cerr << "SQL error: " << zErrMsg << endl;
         sqlite3_free(zErrMsg);
     }
     else
     {
-        fprintf(stdout, "Table created successfully\n");
+        // fprintf(stdout, "Table created successfully\n");
+        cout << "Table created successfully" << endl;
     }
+}
+
+void display_menu()
+{
+    cout << "Welcome to XXXXXXX's Staff Management System!" << endl;
+    cout << endl;
+    cout << "Please select the following actions by entering the corresponding number, then hit 'Enter'." << endl;
+    cout << "1. View a staff member's profile" << endl;
+    cout << "2. Edit a staff member's profile" << endl;
+    cout << "3. Create a staff member's profile" << endl;
+    cout << "4. Delete a staff member's profile" << endl;
+}
+
+void get_user_input_n_run()
+{
+    int selection = 0;
+    cin >> selection;
+    switch (selection)
+    {
+    case 1:
+        /* code */
+        break;
+    case 2:
+        /* code */
+        break;
+    case 3:
+        /* code */
+        break;
+    case 4:
+        /* code */
+        break;
+
+    default:
+        break;
+    }
+}
+
+void add_staff()
+{
 }
 
 int main()
 {
     // Create database pointer for SQLite
     sqlite3 *db;
-
+    /*
+        Functionality:
+        View an employee
+        Edit an employee
+        Delete an employee
+        Create an employee
+        List all staff member?? (what happen if got so many?)
+     */
     connect_database(&db);
-    create_table(&db);
+    while (1)
+    {
+        display_menu();
+        get_user_input_n_run();
+        // create_table(&db); admin
+    }
     sqlite3_close(db);
+
     return 0;
 }

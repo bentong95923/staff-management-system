@@ -8,11 +8,11 @@
 
 using namespace std;
 
-enum employment_status
+enum EmploymentStatus
 {
-    Employed,
-    OnHold,
-    Left
+    EMPLOYED,
+    ONHOLD,
+    LEFT
 };
 
 class Employee
@@ -24,7 +24,7 @@ private:
     time_t DoB;
     string title;
     string department;
-    employment_status employmentStatus;
+    EmploymentStatus employmentStatus;
     string email;
     vector<string> attachedEmail;
     string userName;
