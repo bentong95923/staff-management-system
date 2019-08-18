@@ -20,8 +20,7 @@ void Create::view()
     cout << "8. Email" << endl;
     cout << "9. Salary (optional)" << endl;
     cout << "Press 'Enter' when you are ready to input the above information. Leave blank \\
-    if you do not have any information for optional fields."
-         << endl;
+    if you do not have any information for optional fields." << endl;
 }
 
 void Create::askUserInput()

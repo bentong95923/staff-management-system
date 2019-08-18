@@ -4,6 +4,7 @@
 #include "employee/phone.h"
 #include "employee/name.h"
 #include "employee/employee.h"
+#include "menu.h"
 
 using namespace std;
 
@@ -67,45 +68,6 @@ void create_table(sqlite3 **db)
     }
 }
 
-void display_menu()
-{
-    cout << "Welcome to XXXXXXX's Staff Management System!" << endl;
-    cout << endl;
-    cout << "Please select the following actions by entering the corresponding number, then hit 'Enter'." << endl;
-    cout << "1. View a staff member's profile" << endl;
-    cout << "2. Edit a staff member's profile" << endl;
-    cout << "3. Create a staff member's profile" << endl;
-    cout << "4. Delete a staff member's profile" << endl;
-}
-
-void get_user_input_n_run()
-{
-    int selection = 0;
-    cin >> selection;
-    switch (selection)
-    {
-    case 1:
-        /* code */
-        break;
-    case 2:
-        /* code */
-        break;
-    case 3:
-        /* code */
-        break;
-    case 4:
-        /* code */
-        break;
-
-    default:
-        break;
-    }
-}
-
-void add_staff()
-{
-}
-
 int main()
 {
     // Create database pointer for SQLite
@@ -119,12 +81,11 @@ int main()
         List all staff member?? (what happen if got so many?)
      */
     connect_database(&db);
-    while (1)
-    {
-        display_menu();
-        get_user_input_n_run();
+    // while (1)
+    // {
+        Menu *menu = new Menu();
         // create_table(&db); admin
-    }
+    // }
     sqlite3_close(db);
 
     return 0;

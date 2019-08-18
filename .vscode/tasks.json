@@ -22,7 +22,7 @@
                 "employee\\employee.cpp",
                 "employee\\name.cpp",
                 "employee\\phone.cpp",
-                "main.cpp",
+                "*.cpp",
                 "bin\\sqlite3.o",
                 "-o",
                 "bin\\main"

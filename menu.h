@@ -9,7 +9,8 @@ using namespace std;
 
 enum MenuSelection
 {
-    VIEW = 1,
+    INVALID = 0,
+    VIEW,
     EDIT,
     CREATE,
     DELETE
@@ -18,7 +19,7 @@ enum MenuSelection
 class Menu
 {
 private:
-    int userInput;
+    MenuSelection userInput;
 
 public:
     Menu();
@@ -26,8 +27,8 @@ public:
     void view();
     void askUserInput();
     void execute();
-    int getUserInput();
-    void setUserInput(int s);
+    MenuSelection getUserInput();
+    void setUserInput(MenuSelection s);
 };
 
 #endif
