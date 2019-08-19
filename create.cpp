@@ -10,15 +10,15 @@ Create::Create()
 void Create::view()
 {
     cout << "To create a profile of a staff member, it requires at least the following unless it is optional:" << endl;
-    cout << "1. First Name" << endl;
-    cout << "2. Middle Name (optional)" << endl;
-    cout << "3. Last Name" << endl;
-    cout << "4. Date of Birth (optional)" << endl;
-    cout << "5. Title" << endl;
-    cout << "6. Department" << endl;
-    cout << "7. Landline (optional)" << endl;
-    cout << "8. Email" << endl;
-    cout << "9. Salary (optional)" << endl;
+    for (int i = 0; i < ALL_FIELD_CREATE.size(); i++)
+    {
+        cout << i + 1 << ". " << ALL_FIELD_CREATE.at(i);
+        if ((find(OPTIONAL_FIELD_CREATE.begin(), OPTIONAL_FIELD_CREATE.end(), i)) != OPTIONAL_FIELD_CREATE.end())
+        {
+            cout << " (optional)";
+        }
+        cout << endl;
+    }
     cout << "Press 'Enter' when you are ready to input the above information. Leave blank if you do not have any information for optional fields." << endl;
 }
 
@@ -32,27 +32,22 @@ void Create::askUserInput()
     vector<string> temp(MAX_CREATE_INPUTS, "");
     for (int i = 0; i < temp.size(); i++)
     {
-        char *s = "";
+        char *s;
         cout << ALL_FIELD_CREATE.at(i) << ": ";
+        // Optional
         if ((find(OPTIONAL_FIELD_CREATE.begin(), OPTIONAL_FIELD_CREATE.end(), i)) != OPTIONAL_FIELD_CREATE.end())
         {
             cin.getline(s, 256);
         }
         else
+        // Required
         {
-            string str(s);
-            // cout << (trim(str).size()) << endl;
-            /* while (trim(str).size() == 0)
-            {
-                cout << "cannot be empty" << endl;
-                cin.getline(s, 256);
-                str = s;
-                // cin >> s;
-            } */
+            cin.getline(s,256);
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            // Up to here
         }
-
         // cout << "i: " << i << endl;
-
+        // cin.getline(s, 256);
         string sss(s);
         // Trim whitespace
         sss = trim(sss);

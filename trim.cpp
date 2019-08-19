@@ -2,13 +2,14 @@
 #include <iostream> // debug
 string trim(string str, const string chars)
 {
+    cout << "hihi" << endl;
     string tmp(str);
     tmp.erase(tmp.find_last_not_of(chars) + 1);
     tmp.erase(0, tmp.find_first_not_of(chars));
 
     for (auto x : tmp)
     {
-        // cout << x << endl;
+        cout << x << endl;
     }
     string out_str = "";
     bool pre_space = false;
