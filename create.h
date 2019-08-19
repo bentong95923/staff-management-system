@@ -9,6 +9,7 @@
 #include <limits>
 #include "trim.h"
 #include "conf.h"
+#include "findElementInVector.h"
 
 using namespace std;
 

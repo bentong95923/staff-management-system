@@ -13,7 +13,7 @@ void Create::view()
     for (int i = 0; i < ALL_FIELD_CREATE.size(); i++)
     {
         cout << i + 1 << ". " << ALL_FIELD_CREATE.at(i);
-        if ((find(OPTIONAL_FIELD_CREATE.begin(), OPTIONAL_FIELD_CREATE.end(), i)) != OPTIONAL_FIELD_CREATE.end())
+        if (is_element_in_vector(OPTIONAL_FIELD_CREATE, i))
         {
             cout << " (optional)";
         }
@@ -29,30 +29,48 @@ void Create::askUserInput()
     while (cin.get() != '\n')
         ;
     cout << "Please enter the information for each fields which matches it's corresponding numbering:" << endl;
-    vector<string> temp(MAX_CREATE_INPUTS, "");
-    for (int i = 0; i < temp.size(); i++)
+    vector<string> temp = {};
+    for (int i = 0; i < MAX_CREATE_INPUTS; i++)
     {
         char *s;
         cout << ALL_FIELD_CREATE.at(i) << ": ";
-        // Optional
-        if ((find(OPTIONAL_FIELD_CREATE.begin(), OPTIONAL_FIELD_CREATE.end(), i)) != OPTIONAL_FIELD_CREATE.end())
+        cout << "i: " << i << endl;
+        /* bool optional_field
+        for (int x : OPTIONAL_FIELD_CREATE)
         {
+            if (x == i) {
+
+            }
+        } */
+        // Optional
+        // vector<int>::iterator it = find(OPTIONAL_FIELD_CREATE.begin(), OPTIONAL_FIELD_CREATE.end(), i);
+        if (is_element_in_vector(OPTIONAL_FIELD_CREATE, i))
+        {
+            cout << "optional" << endl;
             cin.getline(s, 256);
         }
         else
         // Required
         {
-            cin.getline(s,256);
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            // Up to here
+            cout << "required" << endl;
+            cin.getline(s, 256);
+            string ttt(s);
+            while ((trim(ttt)).size() == 0)
+            {
+                // cout << "hihi" << endl;
+                cin.getline(s, 256);
+                ttt = s;
+                // Still have problem
+            }
         }
-        // cout << "i: " << i << endl;
-        // cin.getline(s, 256);
         string sss(s);
+
         // Trim whitespace
         sss = trim(sss);
         istringstream parse(sss);
-        temp.at(i) = sss;
+        temp.push_back(sss);
+
+        // cout << "hihihihihi" << endl;
     }
     cout << endl;
     for (string j : temp)

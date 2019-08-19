@@ -82,6 +82,9 @@ int main()
         List all staff member?? (what happen if got so many?)
      */
     connect_database(&db);
+    /* for(int i = 0; i < 9; i++) {
+        cout << (find(OPTIONAL_FIELD_CREATE.begin(), OPTIONAL_FIELD_CREATE.end(), i) != OPTIONAL_FIELD_CREATE.end());
+    } */
     while (1)
     {
         Menu *menu = new Menu();
