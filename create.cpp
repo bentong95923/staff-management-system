@@ -26,38 +26,36 @@ void Create::askUserInput()
 {
     // As from the menu the user will press 'enter' after selecting one of the operation, thus it needs to ignore previous input to capture the future input
     cin.ignore();
-    // cout << (cin.get() == '\n') << endl;
     while (cin.get() != '\n')
         ;
-    // cout << (cin.get() == '\n') << endl;
     cout << "Please enter the information for each fields which matches it's corresponding numbering:" << endl;
     vector<string> temp(MAX_CREATE_INPUTS, "");
-    // vector<int>op_field = OPTIONAL_FIELD;
     for (int i = 0; i < temp.size(); i++)
     {
-        // cout << (cin.get() == '\n') << endl;
-        cout << i + 1 << ". ";
-        // cout << "getting input" << endl;
-        /* if ((find(OPTIONAL_FIELD.begin(), OPTIONAL_FIELD.end(), i)) != OPTIONAL_FIELD.end())
+        char *s = "";
+        cout << ALL_FIELD_CREATE.at(i) << ": ";
+        if ((find(OPTIONAL_FIELD_CREATE.begin(), OPTIONAL_FIELD_CREATE.end(), i)) != OPTIONAL_FIELD_CREATE.end())
         {
-            cin.ignore();
-            // char hihi[256];
-            string s;
-            getline(cin, s);
-            // Trim whitespace
-            // s = trim(s);
-            istringstream parse(s);
-            temp.at(i) = s;
-            continue;
+            cin.getline(s, 256);
         }
-        */
-        // cout << (cin.get() == '\n') << endl;
-        char *s;
-        cout << "i: " << i << endl;
-        cin.getline(s,256);
+        else
+        {
+            string str(s);
+            // cout << (trim(str).size()) << endl;
+            /* while (trim(str).size() == 0)
+            {
+                cout << "cannot be empty" << endl;
+                cin.getline(s, 256);
+                str = s;
+                // cin >> s;
+            } */
+        }
+
+        // cout << "i: " << i << endl;
+
         string sss(s);
         // Trim whitespace
-        trim(sss);
+        sss = trim(sss);
         istringstream parse(sss);
         temp.at(i) = sss;
     }

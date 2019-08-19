@@ -1,19 +1,31 @@
 #include "trim.h"
+#include <iostream> // debug
+string trim(string str, const string chars)
+{
+    string tmp(str);
+    tmp.erase(tmp.find_last_not_of(chars) + 1);
+    tmp.erase(0, tmp.find_first_not_of(chars));
 
-string trim(string str, const string chars) {
-    str.erase(str.find_last_not_of(chars) + 1);
-    str.erase(0, str.find_first_not_of(chars));
+    for (auto x : tmp)
+    {
+        // cout << x << endl;
+    }
     string out_str = "";
     bool pre_space = false;
     int i = 0;
-    while(i < str.size()) {
-        if (str.at(i) != ' ') {
-            if (pre_space) {
-                out_str+=' ';
+    while (i < tmp.size())
+    {
+        if (tmp.at(i) != ' ')
+        {
+            if (pre_space)
+            {
+                out_str += ' ';
             }
-            out_str+=str.at(i);
+            out_str += tmp.at(i);
             pre_space = false;
-        } else {
+        }
+        else
+        {
             pre_space = true;
         }
         ++i;

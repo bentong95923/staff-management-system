@@ -82,12 +82,11 @@ int main()
         List all staff member?? (what happen if got so many?)
      */
     connect_database(&db);
-    // while (1)
-    // {
-        // Menu *menu = new Menu();
-        cout << trim("    B     Ben    Tong    Kae a   1") << endl;
+    while (1)
+    {
+        Menu *menu = new Menu();
         // create_table(&db); admin
-    // }
+    }
     sqlite3_close(db);
     return 0;
 }
