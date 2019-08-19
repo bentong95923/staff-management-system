@@ -1,19 +1,22 @@
 #include "trim.h"
-/* Resource from http://www.martinbroadhurst.com/how-to-trim-a-stdstring.html */
 
-std::string &ltrim(std::string &str, const std::string &chars)
-{
-    str.erase(0, str.find_first_not_of(chars));
-    return str;
-}
-
-std::string &rtrim(std::string &str, const std::string &chars)
-{
+string trim(string str, const string chars) {
     str.erase(str.find_last_not_of(chars) + 1);
-    return str;
-}
-
-std::string &trim(std::string &str, const std::string &chars)
-{
-    return ltrim(rtrim(str, chars), chars);
+    str.erase(0, str.find_first_not_of(chars));
+    string out_str = "";
+    bool pre_space = false;
+    int i = 0;
+    while(i < str.size()) {
+        if (str.at(i) != ' ') {
+            if (pre_space) {
+                out_str+=' ';
+            }
+            out_str+=str.at(i);
+            pre_space = false;
+        } else {
+            pre_space = true;
+        }
+        ++i;
+    }
+    return out_str;
 }

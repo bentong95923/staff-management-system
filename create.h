@@ -2,6 +2,7 @@
 #define CREATE_H_
 
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <algorithm>
 #include <string>

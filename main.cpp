@@ -1,10 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <sqlite3.h>
+#include "sqlite/sqlite3.h"
 #include "employee/phone.h"
 #include "employee/name.h"
 #include "employee/employee.h"
 #include "menu.h"
+#include "trim.h"
 
 using namespace std;
 
@@ -83,7 +84,8 @@ int main()
     connect_database(&db);
     // while (1)
     // {
-        Menu *menu = new Menu();
+        // Menu *menu = new Menu();
+        cout << trim("    B     Ben    Tong    Kae a   1") << endl;
         // create_table(&db); admin
     // }
     sqlite3_close(db);

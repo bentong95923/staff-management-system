@@ -36,45 +36,32 @@ void Create::askUserInput()
     for (int i = 0; i < temp.size(); i++)
     {
         // cout << (cin.get() == '\n') << endl;
-        cout << i + 1 << ". " << ((find(OPTIONAL_FIELD.begin(), OPTIONAL_FIELD.end(), i)) != OPTIONAL_FIELD.end()) << endl;
-        cout << "getting input" << endl;
-        if ((find(OPTIONAL_FIELD.begin(), OPTIONAL_FIELD.end(), i)) != OPTIONAL_FIELD.end())
+        cout << i + 1 << ". ";
+        // cout << "getting input" << endl;
+        /* if ((find(OPTIONAL_FIELD.begin(), OPTIONAL_FIELD.end(), i)) != OPTIONAL_FIELD.end())
         {
             cin.ignore();
             // char hihi[256];
             string s;
             getline(cin, s);
             // Trim whitespace
-            s = trim(s);
-            // Space to Underscore
-            for (int i = 0; i < s.length(); i++)
-            {
-                if (s.at(i) == ' ')
-                {
-                    s.at(i) = '_';
-                }
-            }
+            // s = trim(s);
+            istringstream parse(s);
             temp.at(i) = s;
             continue;
         }
+        */
         // cout << (cin.get() == '\n') << endl;
-        string s;
-        cin.ignore();
-        cin >> s;
-
+        char *s;
+        cout << "i: " << i << endl;
+        cin.getline(s,256);
+        string sss(s);
         // Trim whitespace
-        s = trim(s);
-        // Space to Underscore
-        for (int i = 0; i < s.length(); i++)
-        {
-            if (s.at(i) == ' ')
-            {
-                s.at(i) = '_';
-            }
-        }
-        cout << s << endl;
-        temp.at(i) = s;
+        trim(sss);
+        istringstream parse(sss);
+        temp.at(i) = sss;
     }
+    cout << endl;
     for (string j : temp)
     {
         cout << j << " " << endl;
