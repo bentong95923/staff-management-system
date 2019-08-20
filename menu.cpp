@@ -1,7 +1,8 @@
 #include "menu.h"
 
-Menu::Menu()
+Menu::Menu(sqlite3 **db)
 {
+    this->db = db;
     this->setUserInput(INVALID);
     this->view();
     this->askUserInput();
@@ -47,6 +48,7 @@ void Menu::execute()
         Create *op = new Create();
         op->view();
         op->askUserInput();
+        op->execute(this->db);
         break;
     }
     case DELETE:

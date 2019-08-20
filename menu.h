@@ -2,6 +2,7 @@
 #define MENU_H_
 
 #include <iostream>
+#include "sqlite/sqlite3.h"
 #include "create.h"
 #include "conf.h"
 
@@ -20,9 +21,10 @@ class Menu
 {
 private:
     MenuSelection userInput;
-
+protected:
+    sqlite3 **db;
 public:
-    Menu();
+    Menu(sqlite3 **db);
     ~Menu();
     void view();
     void askUserInput();

@@ -6,7 +6,9 @@
 #include <vector>
 #include <algorithm>
 #include <string>
-#include <limits>
+#include <iterator>
+// #include <limits>
+#include "sqlite/sqlite3.h"
 #include "trim.h"
 #include "conf.h"
 #include "findElementInVector.h"
@@ -22,7 +24,7 @@ public:
     ~Create();
     void view();
     void askUserInput();
-    void execute();
+    void execute(sqlite3 **db);
     vector<string> getUserInput();
     void setUserInput(vector<string> i);
 };

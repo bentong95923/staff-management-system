@@ -40,7 +40,7 @@ void Create::askUserInput()
         {
             cout << "optional" << endl;
             cin.getline(s, 256);
-            cout << "'"<< s << "'" << endl;
+            cout << "'" << s << "'" << endl;
             string sss(s);
 
             // Trim whitespace
@@ -55,29 +55,21 @@ void Create::askUserInput()
         {
             cout << "required" << endl;
             cin.getline(s, 256);
-            cout << "'"<< s << "'" << endl;
-            string ttt(s);
-            while ((trim(ttt)).size() == 0)
+            cout << "'" << s << "'" << endl;
+            string sss(s);
+            while ((trim(sss)).size() == 0)
             {
                 cout << "hihi" << endl;
                 cin.getline(s, 256);
-                ttt = s;
+                sss = s;
             }
             // Trim whitespace
-            ttt = trim(ttt);
-            istringstream parse(ttt);
+            sss = trim(sss);
+            istringstream parse(sss);
             cout << "hihihihihi" << endl;
-            temp.push_back(ttt);
+            temp.push_back(sss);
             cout << "byebye" << endl;
-        } /* 
-        string sss(s);
-
-        // Trim whitespace
-        sss = trim(sss);
-        istringstream parse(sss);
-        cout << "hihihihihi" << endl;
-        temp.push_back(sss);
-        cout << "byebye" << endl; */
+        }
     }
     cout << endl;
     for (string j : temp)
@@ -87,9 +79,29 @@ void Create::askUserInput()
     this->setUserInput(temp);
 }
 
-void Create::execute()
+void Create::execute(sqlite3 **db)
 {
     // Run by sql
+    string userInputTemp = "";
+    ostringstream oss;
+    copy(this->getUserInput().begin(), this->getUserInput().end() - 1, ostream_iterator<string>(oss, ", "));
+    oss << this->getUserInput().back();
+    string sql = "INSERT INTO " + TABLE_NAME.at(0) +
+                 " (FNAME, MNAME, LNAME, DOB, TITLE, DEPARTMENT, LANDLINE, EMAIL\
+    ) VALUES (" + oss.str() +
+                 ")";
+    /* int rc = sqlite3_exec(*db, sql.c_str(), callback, 0, &zErrMsg);
+    if (rc != SQLITE_OK)
+    {
+        // fprintf(stderr, "SQL error: %s\n", zErrMsg);
+        cerr << "SQL error: " << zErrMsg << endl;
+        sqlite3_free(zErrMsg);
+    }
+    else
+    {
+        // fprintf(stdout, "Table created successfully\n");
+        cout << "Table created successfully" << endl;
+    } */
 }
 
 vector<string> Create::getUserInput()

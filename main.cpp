@@ -38,10 +38,10 @@ void connect_database(sqlite3 **db)
     }
 }
 
-void create_table(sqlite3 **db)
+void create_table(sqlite3 **db, string table_name)
 {
     char *zErrMsg = 0;
-    char *sql = "CREATE TABLE STAFF_DETAIL(\
+    string sql = "CREATE TABLE "+table_name+"(\
         ID INT PRIMARY KEY NOT NULL,\
         FNAME TEXT NOT NULL,\
         MNAME TEXT,\
@@ -53,9 +53,8 @@ void create_table(sqlite3 **db)
         EMAIL TEXT NOT NULL,\
         SALARY REAL\
         );";
-
     /* Execute SQL statement */
-    int rc = sqlite3_exec(*db, sql, callback, 0, &zErrMsg);
+    int rc = sqlite3_exec(*db, sql.c_str(), callback, 0, &zErrMsg);
     if (rc != SQLITE_OK)
     {
         // fprintf(stderr, "SQL error: %s\n", zErrMsg);
@@ -82,13 +81,13 @@ int main()
         List all staff member?? (what happen if got so many?)
      */
     connect_database(&db);
+    create_table(&db, TABLE_NAME.at(0));
     /* for(int i = 0; i < 9; i++) {
         cout << (find(OPTIONAL_FIELD_CREATE.begin(), OPTIONAL_FIELD_CREATE.end(), i) != OPTIONAL_FIELD_CREATE.end());
     } */
     while (1)
     {
-        Menu *menu = new Menu();
-        // create_table(&db); admin
+        Menu *menu = new Menu(&db);
     }
     sqlite3_close(db);
     return 0;
