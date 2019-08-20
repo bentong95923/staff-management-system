@@ -14,10 +14,10 @@ string trim(string str, const string chars)
         tmp.erase(tmp.find_last_not_of(chars) + 1);
         tmp.erase(0, tmp.find_first_not_of(chars));
 
-        for (auto x : tmp)
+        /* for (auto x : tmp)
         {
             cout << x << endl;
-        }
+        } */
         string out_str;
         bool pre_space = false;
         int i = 0;

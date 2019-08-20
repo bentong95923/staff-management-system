@@ -27,50 +27,57 @@ void Create::askUserInput()
     // As from the menu the user will press 'enter' after selecting one of the operation, thus it needs to ignore previous input to capture the future input
     cin.ignore();
     while (cin.get() != '\n')
-        ;
-    cout << "Please enter the information for each fields which matches it's corresponding numbering:" << endl;
+        cout << "Please enter the information for each fields which matches it's corresponding numbering:" << endl;
     vector<string> temp = {};
     for (int i = 0; i < MAX_CREATE_INPUTS; i++)
     {
-        char *s;
+        char s[256];
         cout << ALL_FIELD_CREATE.at(i) << ": ";
         cout << "i: " << i << endl;
-        /* bool optional_field
-        for (int x : OPTIONAL_FIELD_CREATE)
-        {
-            if (x == i) {
-
-            }
-        } */
         // Optional
         // vector<int>::iterator it = find(OPTIONAL_FIELD_CREATE.begin(), OPTIONAL_FIELD_CREATE.end(), i);
         if (is_element_in_vector(OPTIONAL_FIELD_CREATE, i))
         {
             cout << "optional" << endl;
             cin.getline(s, 256);
+            cout << "'"<< s << "'" << endl;
+            string sss(s);
+
+            // Trim whitespace
+            sss = trim(sss);
+            istringstream parse(sss);
+            cout << "hihihihihi" << endl;
+            temp.push_back(sss);
+            cout << "byebye" << endl;
         }
         else
         // Required
         {
             cout << "required" << endl;
             cin.getline(s, 256);
+            cout << "'"<< s << "'" << endl;
             string ttt(s);
             while ((trim(ttt)).size() == 0)
             {
-                // cout << "hihi" << endl;
+                cout << "hihi" << endl;
                 cin.getline(s, 256);
                 ttt = s;
-                // Still have problem
             }
-        }
+            // Trim whitespace
+            ttt = trim(ttt);
+            istringstream parse(ttt);
+            cout << "hihihihihi" << endl;
+            temp.push_back(ttt);
+            cout << "byebye" << endl;
+        } /* 
         string sss(s);
 
         // Trim whitespace
         sss = trim(sss);
         istringstream parse(sss);
+        cout << "hihihihihi" << endl;
         temp.push_back(sss);
-
-        // cout << "hihihihihi" << endl;
+        cout << "byebye" << endl; */
     }
     cout << endl;
     for (string j : temp)
