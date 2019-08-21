@@ -11,7 +11,7 @@
 #include "sqlite/sqlite3.h"
 #include "trim.h"
 #include "conf.h"
-#include "findElementInVector.h"
+#include "helper.h"
 
 using namespace std;
 

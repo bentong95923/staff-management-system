@@ -13,7 +13,7 @@ void Create::view()
     for (int i = 0; i < ALL_FIELD_CREATE.size(); i++)
     {
         cout << i + 1 << ". " << ALL_FIELD_CREATE.at(i);
-        if (is_element_in_vector(OPTIONAL_FIELD_CREATE, i))
+        if (Helper::is_element_in_vector(OPTIONAL_FIELD_CREATE, i))
         {
             cout << " (optional)";
         }
@@ -36,7 +36,7 @@ void Create::askUserInput()
         cout << "i: " << i << endl;
         // Optional
         // vector<int>::iterator it = find(OPTIONAL_FIELD_CREATE.begin(), OPTIONAL_FIELD_CREATE.end(), i);
-        if (is_element_in_vector(OPTIONAL_FIELD_CREATE, i))
+        if (Helper::is_element_in_vector(OPTIONAL_FIELD_CREATE, i))
         {
             cout << "optional" << endl;
             cin.getline(s, 256);
@@ -83,13 +83,11 @@ void Create::execute(sqlite3 **db)
 {
     // Run by sql
     string userInputTemp = "";
-    ostringstream oss;
-    copy(this->getUserInput().begin(), this->getUserInput().end() - 1, ostream_iterator<string>(oss, ", "));
-    oss << this->getUserInput().back();
     string sql = "INSERT INTO " + TABLE_NAME.at(0) +
-                 " (FNAME, MNAME, LNAME, DOB, TITLE, DEPARTMENT, LANDLINE, EMAIL\
-    ) VALUES (" + oss.str() +
+                 " (FNAME, MNAME, LNAME, DOB, TITLE, DEPARTMENT, LANDLINE, EMAIL, SALARY\
+    ) VALUES (" + Helper::vector_to_string(this->getUserInput(), ",")+
                  ")";
+    cout << sql << endl;
     /* int rc = sqlite3_exec(*db, sql.c_str(), callback, 0, &zErrMsg);
     if (rc != SQLITE_OK)
     {

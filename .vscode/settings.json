@@ -40,6 +40,9 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "cinttypes": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "any": "cpp",
+        "*.rh": "cpp",
+        "iterator": "cpp"
     }
 }

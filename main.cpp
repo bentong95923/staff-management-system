@@ -6,20 +6,9 @@
 #include "employee/employee.h"
 #include "menu.h"
 #include "trim.h"
+#include "helper.h"
 
 using namespace std;
-
-static int callback(void *NotUsed, int argc, char **argv, char **azColName)
-{
-    int i;
-    for (i = 0; i < argc; i++)
-    {
-        cout << azColName[i] << " = " << (argv[i] ? argv[i] : "NULL") << endl;
-        // printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-    }
-    cout << endl;
-    return 0;
-}
 
 void connect_database(sqlite3 **db)
 {
@@ -42,7 +31,7 @@ void create_table(sqlite3 **db, string table_name)
 {
     char *zErrMsg = 0;
     string sql = "CREATE TABLE "+table_name+"(\
-        ID INT PRIMARY KEY NOT NULL,\
+        ID INTEGER PRIMARY KEY AUTOINCREMENT,\
         FNAME TEXT NOT NULL,\
         MNAME TEXT,\
         LNAME TEXT NOT NULL,\
@@ -54,7 +43,7 @@ void create_table(sqlite3 **db, string table_name)
         SALARY REAL\
         );";
     /* Execute SQL statement */
-    int rc = sqlite3_exec(*db, sql.c_str(), callback, 0, &zErrMsg);
+    int rc = sqlite3_exec(*db, sql.c_str(), Helper::sql_callback, 0, &zErrMsg);
     if (rc != SQLITE_OK)
     {
         // fprintf(stderr, "SQL error: %s\n", zErrMsg);
