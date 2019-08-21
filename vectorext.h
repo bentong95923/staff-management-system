@@ -1,12 +1,12 @@
-#ifndef HELPER_H_
-#define HELPER_H_
+#ifndef VECTOREXT_H_
+#define VECTOREXT_H_
 
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
-class Helper
+class VectorExtension
 {
 public:
     static bool is_element_in_vector(vector<int> v, int e);
@@ -16,8 +16,6 @@ public:
     static string vector_to_string(vector<int> v, string delimiter);
     static string vector_to_string(vector<char> v, string delimiter);
     static string vector_to_string(vector<string> v, string delimiter);
-
-    static int sql_callback(void *NotUsed, int argc, char **argv, char **azColName);
 };
 
 #endif

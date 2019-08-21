@@ -13,7 +13,7 @@ void Create::view()
     for (int i = 0; i < ALL_FIELDS_TABLE_0.size(); i++)
     {
         cout << i + 1 << ". " << ALL_FIELDS_TABLE_0.at(i);
-        if (Helper::is_element_in_vector(OPTIONAL_FIELDS_TABLE_0, i))
+        if (VectorExtension::is_element_in_vector(OPTIONAL_FIELDS_TABLE_0, i))
         {
             cout << " (optional)";
         }
@@ -36,7 +36,7 @@ void Create::askUserInput()
         cout << "i: " << i << endl;
         // Optional
         // vector<int>::iterator it = find(OPTIONAL_FIELD_CREATE.begin(), OPTIONAL_FIELD_CREATE.end(), i);
-        if (Helper::is_element_in_vector(OPTIONAL_FIELDS_TABLE_0, i))
+        if (VectorExtension::is_element_in_vector(OPTIONAL_FIELDS_TABLE_0, i))
         {
             cout << "optional" << endl;
             cin.getline(s, 256);
@@ -84,14 +84,14 @@ void Create::execute(sqlite3 **db)
     // Run by sql
     string userInputTemp = "";
     string sql = "INSERT INTO " + TABLE_NAME.at(0) + " (" +
-                 Helper::vector_to_string(ALL_FIELDS_TABLE_0, ",") +
+                 VectorExtension::vector_to_string(ALL_FIELDS_TABLE_0, ",") +
                  ") VALUES (" +
-                 Helper::vector_to_string(this->getUserInput(), ",") +
+                 VectorExtension::vector_to_string(this->getUserInput(), ",") +
                  ")";
     cout << sql << endl;
 
     char *zErrMsg = 0;
-    int rc = sqlite3_exec(*db, sql.c_str(), Helper::sql_callback, 0, &zErrMsg);
+    int rc = sqlite3_exec(*db, sql.c_str(), SQL::sql_callback, 0, &zErrMsg);
     if (rc != SQLITE_OK)
     {
         cerr << "SQL error: " << zErrMsg << endl;

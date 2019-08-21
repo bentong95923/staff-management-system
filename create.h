@@ -10,7 +10,8 @@
 #include "sqlite/sqlite3.h"
 #include "trim.h"
 #include "conf.h"
-#include "helper.h"
+#include "vectorext.h"
+#include "sql.h"
 
 using namespace std;
 
