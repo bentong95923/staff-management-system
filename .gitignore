@@ -1,6 +1,4 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 /temp
-/bin/main.exe
-/bin/sqlite3.o
 /bin/data.db
