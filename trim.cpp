@@ -3,7 +3,6 @@
 
 string trim(string str, const string chars)
 {
-    cout << "str length: " << str.size() << endl;
     if (str.size() == 0)
     {
         return str;

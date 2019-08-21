@@ -9,17 +9,17 @@ Create::Create()
 
 void Create::view()
 {
-    cout << "To create a profile of a staff member, it requires at least the following unless it is optional:" << endl;
+    cout << "To create a profile of a staff member, please provide the following details. An asterisk '*' means the field is mandatory." << endl;
     for (int i = 0; i < ALL_FIELDS_TABLE_0.size(); i++)
     {
         cout << i + 1 << ". " << ALL_FIELDS_TABLE_0.at(i);
-        if (VectorExtension::is_element_in_vector(OPTIONAL_FIELDS_TABLE_0, i))
+        if (!VectorExtension::is_element_in_vector(OPTIONAL_FIELDS_TABLE_0, i))
         {
-            cout << " (optional)";
+            cout << "*";
         }
         cout << endl;
     }
-    cout << "Press 'Enter' when you are ready to input the above information. Leave blank if you do not have any information for optional fields." << endl;
+    cout << "Press 'Enter' when you are ready to input the above information." << endl;
 }
 
 void Create::askUserInput()
@@ -32,43 +32,44 @@ void Create::askUserInput()
     for (int i = 0; i < MAX_CREATE_INPUTS; i++)
     {
         char s[256];
-        cout << ALL_FIELDS_TABLE_0.at(i) << ": ";
-        cout << "i: " << i << endl;
+        cout << ALL_FIELDS_TABLE_0.at(i);
         // Optional
-        // vector<int>::iterator it = find(OPTIONAL_FIELD_CREATE.begin(), OPTIONAL_FIELD_CREATE.end(), i);
         if (VectorExtension::is_element_in_vector(OPTIONAL_FIELDS_TABLE_0, i))
         {
-            cout << "optional" << endl;
+            cout << " : ";
             cin.getline(s, 256);
-            cout << "'" << s << "'" << endl;
+            //cout << "'" << s << "'" << endl;
             string sss(s);
 
             // Trim whitespace
             sss = trim(sss);
             istringstream parse(sss);
-            cout << "hihihihihi" << endl;
+            //cout << "hihihihihi" << endl;
+            // up to here: need to validate input before storing
             temp.push_back(sss);
-            cout << "byebye" << endl;
+            //cout << "byebye" << endl;
         }
         else
         // Required
         {
-            cout << "required" << endl;
+            cout << "* : ";
             cin.getline(s, 256);
-            cout << "'" << s << "'" << endl;
+            // cout << "'" << s << "'" << endl;
             string sss(s);
             while ((trim(sss)).size() == 0)
             {
-                cout << "hihi" << endl;
+                cout << ALL_FIELDS_TABLE_0.at(i) << " is required!" << endl;
+                cout << ALL_FIELDS_TABLE_0.at(i) << "* : ";;
                 cin.getline(s, 256);
                 sss = s;
             }
             // Trim whitespace
             sss = trim(sss);
             istringstream parse(sss);
-            cout << "hihihihihi" << endl;
+            //cout << "hihihihihi" << endl;
+            // up to here: need to validate input before storing
             temp.push_back(sss);
-            cout << "byebye" << endl;
+            //cout << "byebye" << endl;
         }
     }
     cout << endl;
