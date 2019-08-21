@@ -27,23 +27,12 @@ void connect_database(sqlite3 **db)
     }
 }
 
-void create_table(sqlite3 **db, string table_name)
+void create_table(sqlite3 **db)
 {
     char *zErrMsg = 0;
-    string sql = "CREATE TABLE "+table_name+"(\
-        ID INTEGER PRIMARY KEY AUTOINCREMENT,\
-        FNAME TEXT NOT NULL,\
-        MNAME TEXT,\
-        LNAME TEXT NOT NULL,\
-        DOB DATE,\
-        TITLE TEXT NOT NULL,\
-        DEPARTMENT TEXT NOT NULL,\
-        LANDLINE TEXT,\
-        EMAIL TEXT NOT NULL,\
-        SALARY REAL\
-        );";
+    
     /* Execute SQL statement */
-    int rc = sqlite3_exec(*db, sql.c_str(), Helper::sql_callback, 0, &zErrMsg);
+    int rc = sqlite3_exec(*db, SQL_CREATE_TABLE_0.c_str(), Helper::sql_callback, 0, &zErrMsg);
     if (rc != SQLITE_OK)
     {
         // fprintf(stderr, "SQL error: %s\n", zErrMsg);
@@ -70,10 +59,7 @@ int main()
         List all staff member?? (what happen if got so many?)
      */
     connect_database(&db);
-    create_table(&db, TABLE_NAME.at(0));
-    /* for(int i = 0; i < 9; i++) {
-        cout << (find(OPTIONAL_FIELD_CREATE.begin(), OPTIONAL_FIELD_CREATE.end(), i) != OPTIONAL_FIELD_CREATE.end());
-    } */
+    create_table(&db);
     while (1)
     {
         Menu *menu = new Menu(&db);

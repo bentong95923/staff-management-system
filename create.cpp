@@ -10,10 +10,10 @@ Create::Create()
 void Create::view()
 {
     cout << "To create a profile of a staff member, it requires at least the following unless it is optional:" << endl;
-    for (int i = 0; i < ALL_FIELD_CREATE.size(); i++)
+    for (int i = 0; i < ALL_FIELDS_TABLE_0.size(); i++)
     {
-        cout << i + 1 << ". " << ALL_FIELD_CREATE.at(i);
-        if (Helper::is_element_in_vector(OPTIONAL_FIELD_CREATE, i))
+        cout << i + 1 << ". " << ALL_FIELDS_TABLE_0.at(i);
+        if (Helper::is_element_in_vector(OPTIONAL_FIELDS_TABLE_0, i))
         {
             cout << " (optional)";
         }
@@ -32,11 +32,11 @@ void Create::askUserInput()
     for (int i = 0; i < MAX_CREATE_INPUTS; i++)
     {
         char s[256];
-        cout << ALL_FIELD_CREATE.at(i) << ": ";
+        cout << ALL_FIELDS_TABLE_0.at(i) << ": ";
         cout << "i: " << i << endl;
         // Optional
         // vector<int>::iterator it = find(OPTIONAL_FIELD_CREATE.begin(), OPTIONAL_FIELD_CREATE.end(), i);
-        if (Helper::is_element_in_vector(OPTIONAL_FIELD_CREATE, i))
+        if (Helper::is_element_in_vector(OPTIONAL_FIELDS_TABLE_0, i))
         {
             cout << "optional" << endl;
             cin.getline(s, 256);
@@ -83,23 +83,24 @@ void Create::execute(sqlite3 **db)
 {
     // Run by sql
     string userInputTemp = "";
-    string sql = "INSERT INTO " + TABLE_NAME.at(0) +
-                 " (FNAME, MNAME, LNAME, DOB, TITLE, DEPARTMENT, LANDLINE, EMAIL, SALARY\
-    ) VALUES (" + Helper::vector_to_string(this->getUserInput(), ",")+
+    string sql = "INSERT INTO " + TABLE_NAME.at(0) + " (" +
+                 Helper::vector_to_string(ALL_FIELDS_TABLE_0, ",") +
+                 ") VALUES (" +
+                 Helper::vector_to_string(this->getUserInput(), ",") +
                  ")";
     cout << sql << endl;
-    /* int rc = sqlite3_exec(*db, sql.c_str(), callback, 0, &zErrMsg);
+
+    char *zErrMsg = 0;
+    int rc = sqlite3_exec(*db, sql.c_str(), Helper::sql_callback, 0, &zErrMsg);
     if (rc != SQLITE_OK)
     {
-        // fprintf(stderr, "SQL error: %s\n", zErrMsg);
         cerr << "SQL error: " << zErrMsg << endl;
         sqlite3_free(zErrMsg);
     }
     else
     {
-        // fprintf(stdout, "Table created successfully\n");
-        cout << "Table created successfully" << endl;
-    } */
+        cout << "Staff member's profile created successfully" << endl;
+    }
 }
 
 vector<string> Create::getUserInput()

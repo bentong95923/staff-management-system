@@ -41,7 +41,7 @@ string Helper::vector_to_string(vector<int> v, string delimiter)
     string vector_str = "";
     for (int i = 0; i < v.size(); i++)
     {
-        i != v.size() - 1 ? vector_str += (to_string(v.at(i)) + delimiter) : (vector_str += to_string(v.at(i)));
+        i != v.size() - 1 ? vector_str += ("'" + to_string(v.at(i)) + "'" + delimiter) : (vector_str += "'" + to_string(v.at(i)) + "'");
     }
     return vector_str;
 }
@@ -51,7 +51,7 @@ string Helper::vector_to_string(vector<char> v, string delimiter)
     string vector_str = "";
     for (int i = 0; i < v.size(); i++)
     {
-        i != v.size() - 1 ? vector_str += (to_string(v.at(i)) + delimiter) : (vector_str += to_string(v.at(i)));
+        i != v.size() - 1 ? vector_str += ("'" + to_string(v.at(i)) + "'" + delimiter) : (vector_str += "'" + to_string(v.at(i)) + "'");
     }
     return vector_str;
 }
@@ -61,7 +61,7 @@ string Helper::vector_to_string(vector<string> v, string delimiter)
     string vector_str = "";
     for (int i = 0; i < v.size(); i++)
     {
-        i != v.size() - 1 ? vector_str += (v.at(i) + delimiter) : (vector_str += v.at(i));
+        i != v.size() - 1 ? vector_str += ("'" + v.at(i) + "'" + delimiter) : (vector_str += "'" + v.at(i) + "'");
     }
     return vector_str;
 }

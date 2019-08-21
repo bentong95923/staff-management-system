@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <vector>
-#include <any>
 
 using namespace std;
 

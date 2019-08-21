@@ -7,7 +7,6 @@
 #include <algorithm>
 #include <string>
 #include <iterator>
-// #include <limits>
 #include "sqlite/sqlite3.h"
 #include "trim.h"
 #include "conf.h"
