@@ -4,6 +4,7 @@
 #include "employee/employee.h"
 #include "menu.h"
 #include "sql.h"
+#include "validator.h"
 
 int main()
 {
@@ -19,7 +20,6 @@ int main()
      */
     SQL::connect_database(&db);
     SQL::create_table(&db);
-
     while (1)
     {
         Menu *menu = new Menu(&db);
