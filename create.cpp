@@ -32,44 +32,64 @@ void Create::askUserInput()
     for (int i = 0; i < MAX_CREATE_INPUTS; i++)
     {
         char s[256];
-        cout << ALL_FIELDS_TABLE_0.at(i);
-        // Optional
+        bool validInput = false;
+        // Optional fields
         if (VectorExtension::is_element_in_vector(OPTIONAL_FIELDS_TABLE_0, i))
         {
-            cout << " : ";
-            cin.getline(s, 256);
-            //cout << "'" << s << "'" << endl;
-            string sss(s);
+            while (!validInput)
+            {
+                cout << ALL_FIELDS_TABLE_0.at(i) << " : ";
+                cin.getline(s, 256);
+                //cout << "'" << s << "'" << endl;
+                string sss(s);
 
-            // Trim whitespace
-            sss = trim(sss);
-            istringstream parse(sss);
-            //cout << "hihihihihi" << endl;
-            // up to here: need to validate input before storing
-            temp.push_back(sss);
-            //cout << "byebye" << endl;
+                // Trim whitespace
+                sss = trim(sss);
+                istringstream parse(sss);
+                // up to here: need to validate input before storing
+                if (this->validate_input(sss, i) || sss.size() == 0)
+                {
+                    temp.push_back(sss);
+                    validInput = true;
+                }
+                else
+                {
+                    cout << "Input is invalid. Please try again." << endl;
+                }
+                //cout << "byebye" << endl;
+            }
         }
         else
-        // Required
+        // Required fields
         {
-            cout << "* : ";
-            cin.getline(s, 256);
-            // cout << "'" << s << "'" << endl;
-            string sss(s);
-            while ((trim(sss)).size() == 0)
+            while (!validInput)
             {
-                cout << ALL_FIELDS_TABLE_0.at(i) << " is required!" << endl;
-                cout << ALL_FIELDS_TABLE_0.at(i) << "* : ";;
+                cout << ALL_FIELDS_TABLE_0.at(i) << "* : ";
                 cin.getline(s, 256);
-                sss = s;
+                // cout << "'" << s << "'" << endl;
+                string sss(s);
+                while ((trim(sss)).size() == 0)
+                {
+                    cout << ALL_FIELDS_TABLE_0.at(i) << " is required!" << endl;
+                    cout << ALL_FIELDS_TABLE_0.at(i) << "* : ";
+
+                    cin.getline(s, 256);
+                    sss = s;
+                }
+                // Trim whitespace
+                sss = trim(sss);
+                istringstream parse(sss);
+                // up to here: need to validate input before storing
+                if (this->validate_input(sss, i))
+                {
+                    temp.push_back(sss);
+                    validInput = true;
+                }
+                else
+                {
+                    cout << "Input is invalid. Please try again." << endl;
+                }
             }
-            // Trim whitespace
-            sss = trim(sss);
-            istringstream parse(sss);
-            //cout << "hihihihihi" << endl;
-            // up to here: need to validate input before storing
-            temp.push_back(sss);
-            //cout << "byebye" << endl;
         }
     }
     cout << endl;
@@ -78,6 +98,39 @@ void Create::askUserInput()
         cout << j << " " << endl;
     }
     this->setUserInput(temp);
+}
+
+bool Create::validate_input(string input, int i)
+{
+    switch (i)
+    {
+    case 0:
+    case 1:
+    case 2:
+    case 4:
+    case 5:
+        return Validator::validate_words_only(input);
+        break;
+    case 3:
+        return Validator::validate_date(input);
+        break;
+    case 6:
+        return Validator::validate_landline(input);
+        break;
+    case 7:
+        return Validator::validate_mobile(input);
+        break;
+    case 8:
+        return Validator::validate_email(input);
+        break;
+    case 9:
+        return Validator::validate_salary(input);
+        break;
+    default:
+        cout << "Error in " << __func__ << ": wrong argument 'i' is given" << endl;
+        return false;
+        break;
+    }
 }
 
 void Create::execute(sqlite3 **db)

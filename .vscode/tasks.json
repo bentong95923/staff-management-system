@@ -19,9 +19,7 @@
             "type": "shell",
             "command": "g++",
             "args": [
-                "employee\\employee.cpp",
-                "employee\\name.cpp",
-                "employee\\phone.cpp",
+                "employee\\*",
                 "*.cpp",
                 "bin\\sqlite3.o",
                 "-o",

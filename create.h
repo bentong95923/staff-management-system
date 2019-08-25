@@ -12,6 +12,7 @@
 #include "conf.h"
 #include "vectorext.h"
 #include "sql.h"
+#include "validator.h"
 
 using namespace std;
 
@@ -24,6 +25,7 @@ public:
     ~Create();
     void view();
     void askUserInput();
+    static bool validate_input(string input, int i);
     void execute(sqlite3 **db);
     vector<string> getUserInput();
     void setUserInput(vector<string> i);

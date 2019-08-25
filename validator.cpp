@@ -20,7 +20,7 @@ bool Validator::validate_salary(string salary)
     return regex_match(salary, regex("(^[0-9]+$)"));
 }
 
-bool Validator::validate_name(string name)
+bool Validator::validate_words_only(string name)
 {
     return regex_match(name, regex("(^[A-Za-z ]+$)"));
 }
