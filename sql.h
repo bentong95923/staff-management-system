@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "sqlite/sqlite3.h"
-#include "conf.h"
+#include "configuration.h"
 
 using namespace std;
 

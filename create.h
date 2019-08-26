@@ -9,7 +9,7 @@
 #include <iterator>
 #include "sqlite/sqlite3.h"
 #include "trim.h"
-#include "conf.h"
+#include "configuration.h"
 #include "vectorext.h"
 #include "sql.h"
 #include "validator.h"

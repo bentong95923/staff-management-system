@@ -19,7 +19,6 @@
             "type": "shell",
             "command": "g++",
             "args": [
-                "employee\\*",
                 "*.cpp",
                 "bin\\sqlite3.o",
                 "-o",

@@ -1,7 +1,4 @@
 #include "sqlite/sqlite3.h"
-#include "employee/phone.h"
-#include "employee/name.h"
-#include "employee/employee.h"
 #include "menu.h"
 #include "sql.h"
 #include "validator.h"

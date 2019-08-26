@@ -3,7 +3,7 @@
 Create::Create()
 {
     // Initialize user input vector
-    vector<string> v(MAX_CREATE_INPUTS, "");
+    vector<string> v(ALL_FIELDS_TABLE_0.size(), "");
     this->setUserInput(v);
 }
 
@@ -26,10 +26,10 @@ void Create::askUserInput()
 {
     // As from the menu the user will press 'enter' after selecting one of the operation, thus it needs to ignore previous input to capture the future input
     cin.ignore();
-    while (cin.get() != '\n')
-        cout << "Please enter the information for each fields which matches it's corresponding numbering:" << endl;
+    while (cin.get() != '\n');
+    cout << "Please enter the information for each fields which matches it's corresponding numbering:" << endl;
     vector<string> temp = {};
-    for (int i = 0; i < MAX_CREATE_INPUTS; i++)
+    for (int i = 0; i < ALL_FIELDS_TABLE_0.size(); i++)
     {
         char s[256];
         bool validInput = false;
@@ -40,13 +40,11 @@ void Create::askUserInput()
             {
                 cout << ALL_FIELDS_TABLE_0.at(i) << " : ";
                 cin.getline(s, 256);
-                //cout << "'" << s << "'" << endl;
                 string sss(s);
 
                 // Trim whitespace
                 sss = trim(sss);
                 istringstream parse(sss);
-                // up to here: need to validate input before storing
                 if (this->validate_input(sss, i) || sss.size() == 0)
                 {
                     temp.push_back(sss);
@@ -56,7 +54,6 @@ void Create::askUserInput()
                 {
                     cout << "Input is invalid. Please try again." << endl;
                 }
-                //cout << "byebye" << endl;
             }
         }
         else
@@ -66,7 +63,6 @@ void Create::askUserInput()
             {
                 cout << ALL_FIELDS_TABLE_0.at(i) << "* : ";
                 cin.getline(s, 256);
-                // cout << "'" << s << "'" << endl;
                 string sss(s);
                 while ((trim(sss)).size() == 0)
                 {
@@ -79,7 +75,6 @@ void Create::askUserInput()
                 // Trim whitespace
                 sss = trim(sss);
                 istringstream parse(sss);
-                // up to here: need to validate input before storing
                 if (this->validate_input(sss, i))
                 {
                     temp.push_back(sss);
@@ -93,10 +88,12 @@ void Create::askUserInput()
         }
     }
     cout << endl;
-    for (string j : temp)
+    cout << "Below information summarized the details you have entered:" << endl;
+    for (int j = 0; j < temp.size(); j++)
     {
-        cout << j << " " << endl;
+        cout << ALL_FIELDS_TABLE_0.at(j) << ": " << temp.at(j) << " " << endl;
     }
+
     this->setUserInput(temp);
 }
 
@@ -142,7 +139,6 @@ void Create::execute(sqlite3 **db)
                  ") VALUES (" +
                  VectorExtension::vector_to_string(this->getUserInput(), ",") +
                  ")";
-    cout << sql << endl;
 
     char *zErrMsg = 0;
     int rc = sqlite3_exec(*db, sql.c_str(), SQL::sql_callback, 0, &zErrMsg);
