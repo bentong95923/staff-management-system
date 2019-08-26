@@ -9,7 +9,8 @@ Create::Create()
 
 void Create::view()
 {
-    cout << "To create a profile of a staff member, please provide the following details. An asterisk '*' means the field is mandatory." << endl;
+    cout << "To create a profile of a staff member, please provide the following details." << endl
+         << "'*' : mandatory" << endl;
     for (int i = 0; i < ALL_FIELDS_TABLE_0.size(); i++)
     {
         cout << i + 1 << ". " << ALL_FIELDS_TABLE_0.at(i);
@@ -19,15 +20,23 @@ void Create::view()
         }
         cout << endl;
     }
-    cout << "Press 'Enter' when you are ready to input the above information." << endl;
+    cout << "Press ENTER when you are ready to input the above informatio or press ESC to cancel." << endl;
 }
 
-void Create::askUserInput()
+bool Create::askUserInput()
 {
-    // As from the menu the user will press 'enter' after selecting one of the operation, thus it needs to ignore previous input to capture the future input
+    // As from the menu the user will press ENTER after selecting one of the operation, thus it needs to ignore previous input to capture the future input
     cin.ignore();
-    while (cin.get() != '\n');
-    cout << "Please enter the information for each fields which matches it's corresponding numbering:" << endl;
+    char a = ' ';
+    while (!(a == '\n' || a == 27))
+    {
+        cin >> a;
+    }
+    if (a == 27)
+    {
+        return false;
+    }
+    cout << "Please enter the information for each fields which matches it's corresponding numbering." << endl;
     vector<string> temp = {};
     for (int i = 0; i < ALL_FIELDS_TABLE_0.size(); i++)
     {
@@ -87,14 +96,27 @@ void Create::askUserInput()
             }
         }
     }
-    cout << endl;
-    cout << "Below information summarized the details you have entered:" << endl;
+    cout << endl
+         << "Below information summarizes the details you have entered:" << endl;
     for (int j = 0; j < temp.size(); j++)
     {
         cout << ALL_FIELDS_TABLE_0.at(j) << ": " << temp.at(j) << " " << endl;
     }
-
-    this->setUserInput(temp);
+    cout << "Press ENTER to continue to create this profile, or press ESC to undo and remove this profile." << endl;
+    char a = ' ';
+    while (!(a == '\n' || a == 27))
+    {
+        cin >> a;
+    }
+    if (a == 27)
+    {
+        return false;
+    }
+    else
+    {
+        this->setUserInput(temp);
+        return true;
+    }
 }
 
 bool Create::validate_input(string input, int i)
@@ -121,16 +143,16 @@ bool Create::validate_input(string input, int i)
         return Validator::validate_email(input);
         break;
     case 9:
-        return Validator::validate_salary(input);
+        return Validator::validate_positive_integer(input);
         break;
     default:
-        cout << "Error in " << __func__ << ": wrong argument 'i' is given" << endl;
+        cerr << "Error in " << __func__ << ": wrong argument 'i' is given" << endl;
         return false;
         break;
     }
 }
 
-void Create::execute(sqlite3 **db)
+bool Create::execute(sqlite3 **db)
 {
     // Run by sql
     string userInputTemp = "";
@@ -149,7 +171,7 @@ void Create::execute(sqlite3 **db)
     }
     else
     {
-        cout << "Staff member's profile created successfully" << endl;
+        cout << "The profile for staff member '" << this->getUserInput().at(0) << "' has been created successfully." << endl;
     }
 }
 

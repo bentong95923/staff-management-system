@@ -20,19 +20,34 @@ void SQL::connect_database(sqlite3 **db)
 void SQL::create_table(sqlite3 **db)
 {
     char *zErrMsg = 0;
-    
+
     /* Execute SQL statement */
     int rc = sqlite3_exec(*db, SQL_CREATE_TABLE_0.c_str(), SQL::sql_callback, 0, &zErrMsg);
     if (rc != SQLITE_OK)
     {
         // fprintf(stderr, "SQL error: %s\n", zErrMsg);
-        cerr << "SQL error: " << zErrMsg << endl;
+        cerr << "SQL error in " << __func__ << ": " << zErrMsg << endl;
         sqlite3_free(zErrMsg);
     }
     else
     {
         // fprintf(stdout, "Table created successfully\n");
         cout << "Table created successfully" << endl;
+    }
+}
+
+void SQL::disconnect_database(sqlite3 **db)
+{
+    char *zErrMsg = 0;
+    int rc = sqlite3_close(*db);
+    if (rc != SQLITE_OK)
+    {
+        cerr << "SQL error in " << __func__ << ": " << zErrMsg << endl;
+        sqlite3_free(zErrMsg);
+    }
+    else
+    {
+        cout << "Database closed successfully." << endl;
     }
 }
 

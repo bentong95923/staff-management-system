@@ -1,5 +1,5 @@
 #include "sqlite/sqlite3.h"
-#include "menu.h"
+#include "management.h"
 #include "sql.h"
 #include "validator.h"
 
@@ -17,10 +17,13 @@ int main()
      */
     SQL::connect_database(&db);
     SQL::create_table(&db);
-    while (1)
+
+    bool statusOn = true;
+    while (statusOn)
     {
-        Menu *menu = new Menu(&db);
+        System *system = new System(&db);
+        statusOn = system->run();
     }
-    sqlite3_close(db);
+    SQL::disconnect_database(&db);
     return 0;
 }

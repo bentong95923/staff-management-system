@@ -15,9 +15,9 @@ bool Validator::validate_mobile(string mobile)
     return regex_match(mobile, regex("(^[0]{1}[2]{1}[0-9]{7,9}$)"));
 }
 
-bool Validator::validate_salary(string salary)
+bool Validator::validate_positive_integer(string n)
 {
-    return regex_match(salary, regex("(^[0-9]+$)"));
+    return regex_match(n, regex("(^[0-9]+$)"));
 }
 
 bool Validator::validate_words_only(string name)

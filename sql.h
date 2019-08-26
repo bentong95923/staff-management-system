@@ -12,6 +12,7 @@ class SQL
 public:
     static void connect_database(sqlite3 **db);
     static void create_table(sqlite3 **db);
+    static void disconnect_database(sqlite3 **db);
     static int sql_callback(void *NotUsed, int argc, char **argv, char **azColName);
 };
 
