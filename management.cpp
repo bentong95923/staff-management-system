@@ -32,7 +32,7 @@ bool System::askUserInput()
     bool validInput = false;
     while (!validInput)
     {
-        cout << "Selection : ";
+        cout << "> ";
         cin.getline(s, 256);
         string sss(s);
 
@@ -44,20 +44,21 @@ bool System::askUserInput()
         {
             sss.at(x) = tolower(sss.at(x));
         }
-        if (s == "quit")
+        if (sss == "quit")
         {
             return false;
+            break;
         }
-        else if (Validator::validate_positive_integer(s))
+        else if (Validator::validate_positive_integer(sss))
         {
-            if (stoi(s) >= 1 || stoi(s) <= 4)
+            if (stoi(sss) >= 1 && stoi(sss) <= 4)
             {
-                this->setUserInput((ActionSelection)stoi(s));
+                this->setUserInput((ActionSelection)stoi(sss));
                 validInput = true;
             }
             else
             {
-                cout << "Please enter a number which corresponding to the actions." << endl;
+                cout << "Please enter a number corresponding to the actions." << endl;
             }
         }
         else

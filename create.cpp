@@ -27,12 +27,12 @@ bool Create::askUserInput()
 {
     // As from the menu the user will press ENTER after selecting one of the operation, thus it needs to ignore previous input to capture the future input
     cin.ignore();
-    char a = ' ';
-    while (!(a == '\n' || a == 27))
+    char enterOrEsc = ' ';
+    while (!(enterOrEsc == '\n' || enterOrEsc == 27))
     {
-        cin >> a;
+        cin >> enterOrEsc;
     }
-    if (a == 27)
+    if (enterOrEsc == 27)
     {
         return false;
     }
@@ -103,12 +103,12 @@ bool Create::askUserInput()
         cout << ALL_FIELDS_TABLE_0.at(j) << ": " << temp.at(j) << " " << endl;
     }
     cout << "Press ENTER to continue to create this profile, or press ESC to undo and remove this profile." << endl;
-    char a = ' ';
-    while (!(a == '\n' || a == 27))
+    enterOrEsc = ' ';
+    while (!(enterOrEsc == '\n' || enterOrEsc == 27))
     {
-        cin >> a;
+        cin >> enterOrEsc;
     }
-    if (a == 27)
+    if (enterOrEsc == 27)
     {
         return false;
     }
