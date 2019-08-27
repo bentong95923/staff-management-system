@@ -27,21 +27,29 @@ bool Create::askUserInput()
 {
     // As from the menu the user will press ENTER after selecting one of the operation, thus it needs to ignore previous input to capture the future input
     cin.ignore();
-    char enterOrEsc = ' ';
-    while (!(enterOrEsc == '\n' || enterOrEsc == 27))
+    char s[256];
+    bool validInput = false;
+    while (!validInput)
     {
-        cin >> enterOrEsc;
-    }
-    if (enterOrEsc == 27)
-    {
-        return false;
+        cin.getline(s, 256);
+        string sss(s);
+
+        // Trim whitespace
+        sss = trim(sss);
+        istringstream parse(sss);
+        if (sss == "quit")
+        {
+            return false;
+            break;
+        } else if (sss.size()==0) {
+            validInput = true;
+        }
     }
     cout << "Please enter the information for each fields which matches it's corresponding numbering." << endl;
     vector<string> temp = {};
     for (int i = 0; i < ALL_FIELDS_TABLE_0.size(); i++)
     {
-        char s[256];
-        bool validInput = false;
+        validInput = false;
         // Optional fields
         if (VectorExtension::is_element_in_vector(OPTIONAL_FIELDS_TABLE_0, i))
         {
@@ -103,20 +111,10 @@ bool Create::askUserInput()
         cout << ALL_FIELDS_TABLE_0.at(j) << ": " << temp.at(j) << " " << endl;
     }
     cout << "Press ENTER to continue to create this profile, or press ESC to undo and remove this profile." << endl;
-    enterOrEsc = ' ';
-    while (!(enterOrEsc == '\n' || enterOrEsc == 27))
-    {
-        cin >> enterOrEsc;
-    }
-    if (enterOrEsc == 27)
-    {
-        return false;
-    }
-    else
-    {
-        this->setUserInput(temp);
-        return true;
-    }
+    while (cin.get() != '\n')
+        ;
+    this->setUserInput(temp);
+    return true;
 }
 
 bool Create::validate_input(string input, int i)
