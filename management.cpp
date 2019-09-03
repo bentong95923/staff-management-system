@@ -8,30 +8,46 @@ System::System(sqlite3 **db)
 
 bool System::run()
 {
-    this->view();
-    bool success;
-    this->askUserInput() ? success = this->execute() : success = false;
-    return success;
+    bool cont = true, cont2 = true;
+    while (cont)
+    {
+        this->view();
+        if (!this->askUserInput())
+        {
+            cont = false;
+            cont2 = false;
+        }
+        else
+        {
+            while (cont2)
+            {
+                cont2 = this->execute();
+                cout << cont2 << endl;
+            }
+        }
+    }
+    return cont;
 }
 
 void System::view()
 {
     cout << endl;
     cout << "Welcome to " << ORGANIZATION_NAME << "'s Staff Management System!" << endl;
-    cout <<"-----------------------------------------------------------" << endl;
+    cout << "-----------------------------------------------------------" << endl;
     cout << endl;
     cout << "Please select the following actions by entering the corresponding number:" << endl;
     cout << "1 - View a staff member's profile" << endl;
     cout << "2 - Edit a staff member's profile" << endl;
     cout << "3 - Create a staff member's profile" << endl;
     cout << "4 - Delete a staff member's profile" << endl;
-    cout << "If you want to quit the system, enter 'quit' (case insensitive)." << endl;
+    cout << "To quit the system, type 'quit'." << endl;
 }
 
 bool System::askUserInput()
 {
     char s[256];
     bool validInput = false;
+    cin.clear();
     while (!validInput)
     {
         cout << "> ";
@@ -41,11 +57,6 @@ bool System::askUserInput()
         // Trim whitespace
         sss = trim(sss);
         istringstream parse(sss);
-        // convert string to to lower case
-        for (int x = 0; x < sss.size(); x++)
-        {
-            sss.at(x) = tolower(sss.at(x));
-        }
         if (sss == "quit")
         {
             return false;
@@ -56,6 +67,7 @@ bool System::askUserInput()
             if (stoi(sss) >= 1 && stoi(sss) <= 4)
             {
                 this->setUserInput((ActionSelection)stoi(sss));
+                cout << sss << endl;
                 validInput = true;
             }
             else

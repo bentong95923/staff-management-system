@@ -25,13 +25,10 @@ void Create::view()
 
 bool Create::askUserInput()
 {
-    // As from the menu the user will press ENTER after selecting one of the operation, thus it needs to ignore previous input to capture the future input
-    // cin.ignore();
     char s[256];
-    bool validInput = false;
-    while (!validInput)
+    while (true)
     {
-        cout << "Press ENTER when you are ready to input the above information, or enter 'menu' to go back to main menu." << endl;
+        cout << "Press ENTER when you are ready to input the above information, or type 'menu' to go back to main menu." << endl;
         cout << "> ";
         cin.getline(s, 256);
         string sss(s);
@@ -46,7 +43,7 @@ bool Create::askUserInput()
         }
         else if (sss.size() == 0)
         {
-            validInput = true;
+            break;
         }
         else
         {
@@ -57,11 +54,10 @@ bool Create::askUserInput()
     vector<string> temp = {};
     for (int i = 0; i < ALL_FIELDS_TABLE_0.size(); i++)
     {
-        validInput = false;
         // Optional fields
         if (VectorExtension::is_element_in_vector(OPTIONAL_FIELDS_TABLE_0, i))
         {
-            while (!validInput)
+            while (true)
             {
                 cout << ALL_FIELDS_TABLE_0.at(i) << " : ";
                 cin.getline(s, 256);
@@ -73,7 +69,7 @@ bool Create::askUserInput()
                 if (this->validate_input(sss, i) || sss.size() == 0)
                 {
                     temp.push_back(sss);
-                    validInput = true;
+                    break;
                 }
                 else
                 {
@@ -84,7 +80,7 @@ bool Create::askUserInput()
         else
         // Required fields
         {
-            while (!validInput)
+            while (true)
             {
                 cout << ALL_FIELDS_TABLE_0.at(i) << "* : ";
                 cin.getline(s, 256);
@@ -103,7 +99,7 @@ bool Create::askUserInput()
                 if (this->validate_input(sss, i))
                 {
                     temp.push_back(sss);
-                    validInput = true;
+                    break;
                 }
                 else
                 {
@@ -178,6 +174,34 @@ bool Create::execute(sqlite3 **db)
     else
     {
         cout << "The profile for staff member '" << this->getUserInput().at(0) << "' has been created successfully." << endl;
+    }
+
+    char s[256];
+    while (true)
+    {
+        cout << "Type 'create' to create a new prfile, or press ENTER to go back to main menu." << endl;
+        cout << "> ";
+        cin.getline(s, 256);
+        string sss(s);
+
+        // Trim whitespace
+        sss = trim(sss);
+        istringstream parse(sss);
+        if (sss == "create")
+        {
+            // cout << "hihi" << endl;
+            return true;
+            break;
+        }
+        else if (sss.size() == 0)
+        {
+            return false;
+            break;
+        }
+        else
+        {
+            cout << "Input is invalid. Please try again." << endl;
+        }
     }
 }
 
