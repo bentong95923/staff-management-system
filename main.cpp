@@ -1,7 +1,6 @@
 #include "sqlite/sqlite3.h"
 #include "management.h"
 #include "sql.h"
-#include "validator.h"
 
 int main()
 {

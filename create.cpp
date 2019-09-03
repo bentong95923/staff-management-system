@@ -9,7 +9,8 @@ Create::Create()
 
 void Create::view()
 {
-    cout << "To create a profile of a staff member, please provide the details which will be showing next." << "'*' = mandatory" << endl;
+    cout << "Please provide the details below to create a new profile."
+         << "'*' means mandatory" << endl;
 
     for (int i = 0; i < ALL_FIELDS_TABLE_0.size(); i++)
     {
@@ -117,7 +118,7 @@ bool Create::askUserInput()
     {
         cout << ALL_FIELDS_TABLE_0.at(j) << ": " << temp.at(j) << " " << endl;
     }
-    cout << "Press ENTER to continue to create this profile, or press ESC to undo and remove this profile." << endl;
+    cout << "The system will create the profile with the above information. Press ENTER to continue ...";
     while (cin.get() != '\n')
         ;
     this->setUserInput(temp);

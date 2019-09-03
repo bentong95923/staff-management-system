@@ -1,7 +1,7 @@
 #ifndef CREATE_H_
 #define CREATE_H_
 
-#include <iostream>
+// #include <iostream>
 #include <sstream>
 #include <vector>
 #include <algorithm>
@@ -14,7 +14,7 @@
 #include "sql.h"
 #include "validator.h"
 
-using namespace std;
+// using namespace std;
 
 class Create
 {

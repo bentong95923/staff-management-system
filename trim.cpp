@@ -1,5 +1,4 @@
 #include "trim.h"
-#include <iostream> // debug
 
 string trim(string str, const string chars)
 {

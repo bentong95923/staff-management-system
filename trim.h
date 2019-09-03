@@ -1,5 +1,7 @@
 #ifndef TRIM_H_
 #define TRIM_H_
+
+#include <iostream>
 #include <string>
 
 using namespace std;
