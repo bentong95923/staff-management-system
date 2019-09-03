@@ -9,8 +9,8 @@ Create::Create()
 
 void Create::view()
 {
-    cout << "To create a profile of a staff member, please provide the following details." << endl
-         << "'*' : mandatory" << endl;
+    cout << "To create a profile of a staff member, please provide the details which will be showing next." << "'*' = mandatory" << endl;
+
     for (int i = 0; i < ALL_FIELDS_TABLE_0.size(); i++)
     {
         cout << i + 1 << ". " << ALL_FIELDS_TABLE_0.at(i);
@@ -20,29 +20,36 @@ void Create::view()
         }
         cout << endl;
     }
-    cout << "Press ENTER when you are ready to input the above informatio or press ESC to cancel." << endl;
 }
 
 bool Create::askUserInput()
 {
     // As from the menu the user will press ENTER after selecting one of the operation, thus it needs to ignore previous input to capture the future input
-    cin.ignore();
+    // cin.ignore();
     char s[256];
     bool validInput = false;
     while (!validInput)
     {
+        cout << "Press ENTER when you are ready to input the above information, or enter 'menu' to go back to main menu." << endl;
+        cout << "> ";
         cin.getline(s, 256);
         string sss(s);
 
         // Trim whitespace
         sss = trim(sss);
         istringstream parse(sss);
-        if (sss == "quit")
+        if (sss == "menu")
         {
             return false;
             break;
-        } else if (sss.size()==0) {
+        }
+        else if (sss.size() == 0)
+        {
             validInput = true;
+        }
+        else
+        {
+            cout << "Input is invalid. Please try again." << endl;
         }
     }
     cout << "Please enter the information for each fields which matches it's corresponding numbering." << endl;

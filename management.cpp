@@ -16,14 +16,16 @@ bool System::run()
 
 void System::view()
 {
-    cout << "Welcome to " << ORGANIZATION_NAME << "'s Staff Management System!" << endl;
     cout << endl;
-    cout << "Please select the following actions by entering the corresponding number, then press ENTER." << endl;
+    cout << "Welcome to " << ORGANIZATION_NAME << "'s Staff Management System!" << endl;
+    cout <<"-----------------------------------------------------------" << endl;
+    cout << endl;
+    cout << "Please select the following actions by entering the corresponding number:" << endl;
     cout << "1 - View a staff member's profile" << endl;
     cout << "2 - Edit a staff member's profile" << endl;
     cout << "3 - Create a staff member's profile" << endl;
     cout << "4 - Delete a staff member's profile" << endl;
-    cout << "If you want to quit the system, type 'quit' (case insensitive) and press ENTER." << endl;
+    cout << "If you want to quit the system, enter 'quit' (case insensitive)." << endl;
 }
 
 bool System::askUserInput()
@@ -63,7 +65,7 @@ bool System::askUserInput()
         }
         else
         {
-            cout << "Please enter a number." << endl;
+            cout << "Invalid input. Please try again." << endl;
         }
     }
     return validInput;
