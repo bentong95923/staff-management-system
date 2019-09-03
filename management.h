@@ -25,7 +25,7 @@ protected:
 public:
     System(sqlite3 **db);
     ~System();
-    bool run();
+    void run();
     void view();
     bool askUserInput();
     bool execute();

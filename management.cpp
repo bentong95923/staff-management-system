@@ -3,30 +3,28 @@
 System::System(sqlite3 **db)
 {
     this->db = db;
-    this->setUserInput(INVALID);
 }
 
-bool System::run()
+void System::run()
 {
-    bool cont = true, cont2 = true;
-    while (cont)
+    while (true)
     {
         this->view();
-        if (!this->askUserInput())
+        if (this->askUserInput())
         {
-            cont = false;
-            cont2 = false;
+            while (true)
+            {
+                if (!this->execute())
+                {
+                    break;
+                }
+            }
         }
         else
         {
-            while (cont2)
-            {
-                cont2 = this->execute();
-                cout << cont2 << endl;
-            }
+            break;
         }
     }
-    return cont;
 }
 
 void System::view()
@@ -67,7 +65,6 @@ bool System::askUserInput()
             if (stoi(sss) >= 1 && stoi(sss) <= 4)
             {
                 this->setUserInput((ActionSelection)stoi(sss));
-                cout << sss << endl;
                 validInput = true;
             }
             else
@@ -103,10 +100,9 @@ bool System::execute()
     {
         Create *op = new Create();
         op->view();
-        bool quit = !op->askUserInput();
-        if (quit)
+        if (!op->askUserInput())
         {
-            return quit;
+            return false;
         }
         else
         {

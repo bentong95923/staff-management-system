@@ -17,12 +17,9 @@ int main()
     SQL::connect_database(&db);
     SQL::create_table(&db);
 
-    bool statusOn = true;
-    while (statusOn)
-    {
-        System *system = new System(&db);
-        statusOn = system->run();
-    }
+    System *system = new System(&db);
+    system->run();
+    
     SQL::disconnect_database(&db);
     return 0;
 }

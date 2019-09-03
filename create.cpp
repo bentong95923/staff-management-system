@@ -66,7 +66,7 @@ bool Create::askUserInput()
                 // Trim whitespace
                 sss = trim(sss);
                 istringstream parse(sss);
-                if (this->validate_input(sss, i) || sss.size() == 0)
+                if (this->validateInput(sss, i) || sss.size() == 0)
                 {
                     temp.push_back(sss);
                     break;
@@ -96,7 +96,7 @@ bool Create::askUserInput()
                 // Trim whitespace
                 sss = trim(sss);
                 istringstream parse(sss);
-                if (this->validate_input(sss, i))
+                if (this->validateInput(sss, i))
                 {
                     temp.push_back(sss);
                     break;
@@ -121,7 +121,7 @@ bool Create::askUserInput()
     return true;
 }
 
-bool Create::validate_input(string input, int i)
+bool Create::validateInput(string input, int i)
 {
     switch (i)
     {

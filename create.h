@@ -25,7 +25,7 @@ public:
     ~Create();
     void view();
     bool askUserInput();
-    static bool validate_input(string input, int i);
+    static bool validateInput(string input, int i);
     bool execute(sqlite3 **db);
     vector<string> getUserInput();
     void setUserInput(vector<string> i);
