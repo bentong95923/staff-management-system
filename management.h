@@ -1,11 +1,8 @@
 #ifndef MANAGEMENT_H_
 #define MANAGEMENT_H_
 
-// #include <iostream>
 #include "sqlite/sqlite3.h"
 #include "create.h"
-
-// using namespace std;
 
 enum ActionSelection
 {
