@@ -205,15 +205,6 @@ bool Create::execute(sqlite3 **db)
     }
 }
 
-vector<string> Create::getUserInput()
-{
-    return this->userInput;
-}
-void Create::setUserInput(vector<string> i)
-{
-    this->userInput = i;
-}
-
 Create::~Create()
 {
 }
