@@ -1,17 +1,16 @@
-#ifndef CREATE_H_
-#define CREATE_H_
+#ifndef VIEW_H_
+#define VIEW_H_
 
 #include "operation.h"
 
-class Create : public Operation
+class View : public Operation
 {
 public:
-    Create();
-    ~Create();
+    View();
+    ~View();
     void view();
     bool askUserInput();
     bool execute(sqlite3 **db);
-    static bool validateInput(string input, int i);
 };
 
 #endif

@@ -16,8 +16,6 @@ class Operation
 private:
     vector<string> userInput;
 public:
-    // Operation();
-    // ~Operation();
     virtual void view() = 0;
     virtual bool askUserInput() = 0;
     virtual bool execute(sqlite3 **db) = 0;
