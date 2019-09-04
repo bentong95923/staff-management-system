@@ -1,5 +1,5 @@
-#ifndef CONFIGURATION_H_
-#define CONFIGURATION_H_
+#ifndef CONFG_H_
+#define CONFG_H_
 
 #define ORGANIZATION_NAME "Panda Limited"
 
@@ -36,6 +36,7 @@ using namespace std;
                                       + ALL_FIELDS_TABLE_0.at(8) + " text not null," 
                                       + ALL_FIELDS_TABLE_0.at(9) + " real\
                 );";
+    const vector<int>AVAILABLE_SEARCH_FIELD_TABLE_0 = {0,8};// Position for the field that is available for look up in view operation
 
 // public:
 // };

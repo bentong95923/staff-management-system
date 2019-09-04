@@ -50,7 +50,6 @@ bool Create::askUserInput()
             cout << "Input is invalid. Please try again." << endl;
         }
     }
-    cout << "Please enter the information for each fields which matches it's corresponding numbering." << endl;
     vector<string> temp = {};
     for (int i = 0; i < ALL_FIELDS_TABLE_0.size(); i++)
     {
@@ -165,21 +164,25 @@ bool Create::execute(sqlite3 **db)
                  ")";
 
     char *zErrMsg = 0;
+    cout << "creating ..............................";
     int rc = sqlite3_exec(*db, sql.c_str(), SQL::sql_callback, 0, &zErrMsg);
     if (rc != SQLITE_OK)
     {
-        cerr << "SQL error: " << zErrMsg << endl;
+        cout << "fail! (";
+        cerr << "SQL error: " << zErrMsg << ")" << endl;
         sqlite3_free(zErrMsg);
     }
     else
     {
-        cout << "The profile for staff member '" << this->getUserInput().at(0) << "' has been created successfully." << endl;
+        cout << "success!" << endl;
     }
+
+    cout << "The profile for staff member '" << this->getUserInput().at(0) << "' has been created successfully." << endl;
 
     char s[256];
     while (true)
     {
-        cout << "Type 'create' to create a new prfile, or press ENTER to go back to main menu." << endl;
+        cout << "Type 'create' to create a new profile, or press ENTER to go back to main menu." << endl;
         cout << "> ";
         cin.getline(s, 256);
         string sss(s);

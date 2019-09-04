@@ -1,15 +1,17 @@
 #ifndef OPERATION_H_
 #define OPERATION_H_
 
+#include <iostream>
 #include <sstream>
 #include <vector>
-#include <string>
 #include "sqlite/sqlite3.h"
 #include "sql.h"
 
 #include "vectorext.h"
 #include "trim.h"
 #include "validator.h"
+
+using namespace std;
 
 class Operation
 {

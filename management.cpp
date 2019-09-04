@@ -86,14 +86,23 @@ bool System::execute()
     {
     case VIEW:
     {
-        /* code */
-        cout << "View" << endl;
+        View *op = new View();
+        op->view();
+        if (!op->askUserInput())
+        {
+            return false;
+        }
+        else
+        {
+            return op->execute(this->db);
+        }
         break;
     }
     case EDIT:
     {
         /* code */
         cout << "Edit" << endl;
+        return false;
         break;
     }
     case CREATE:
@@ -114,12 +123,14 @@ bool System::execute()
     {
         /* code */
         cout << "Delete" << endl;
+        return false;
         break;
     }
 
     default:
     {
-        cout << "byebye" << endl;
+        cout << "Invalid operation!" << endl;
+        return false;
         break;
     }
     }

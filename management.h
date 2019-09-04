@@ -3,6 +3,7 @@
 
 #include "sqlite/sqlite3.h"
 #include "create.h"
+#include "view.h"
 
 enum ActionSelection
 {
