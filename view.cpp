@@ -9,7 +9,7 @@ View::View()
 
 void View::view()
 {
-    cout << "Please provide ONLY one of the following information to look up a staff member's profile:" << endl;
+    cout << "To look up a profile, you will need to provide one of the following:" << endl;
     cout << "- ID " << endl;
     for (int j = 0; j < ALL_FIELDS_TABLE_0.size(); j++)
     {
@@ -18,7 +18,6 @@ void View::view()
             cout << "- " << ALL_FIELDS_TABLE_0.at(j) << endl;
         }
     }
-    cout << "Press ENTER to start searching, or type 'menu' to go back to main menu." << endl;
 }
 
 bool View::askUserInput()
@@ -26,6 +25,7 @@ bool View::askUserInput()
     char s[256];
     while (true)
     {
+        cout << "Enter one of the above and press ENTER to start searching, or type 'menu' to go back to main menu." << endl;
         cout << "> ";
         cin.getline(s, 256);
         string sss(s);
@@ -42,29 +42,40 @@ bool View::askUserInput()
             return false;
             break;
         }
-        else if (Validator::validate_positive_integer(sss)) // validate input
-        {
-            cout << "Type of information you entered: ID" << endl;
-            return true;
-        }
-        else if (Validator::validate_words_only(sss)) // validate input
-        {
-            cout << "Type of information you entered: First_Name" << endl;
-            return true;
-        }
-        else if (Validator::validate_date(sss)) // validate input
-        {
-            cout << "Type of information you entered: Date" << endl;
-            return true;
-        }
-        else if (Validator::validate_email(sss)) // validate input
-        {
-            cout << "Type of information you entered: Email" << endl;
-            return true;
-        }
         else
         {
-            cout << "Input is invalid. Please try again." << endl;
+            enum DataType
+            {
+                ID,
+                WORDS,
+                DATE,
+                EMAIL,
+                INVALID
+            };
+
+            DataType type;
+
+            Validator::validate_positive_integer(sss) ? type = ID : Validator::validate_words_only(sss) ? type = WORDS : Validator::validate_date(sss) ? type = DATE : Validator::validate_email(sss) ? type = EMAIL : type = INVALID;
+            string sql = "select * from " + TABLE_NAME.at(0) + " where "; // select * from Staff_Details where id = 2
+            
+            switch (type)
+            {
+            case ID:
+                cout << "Guessing information you provide is ID.........." << endl;
+                break;
+            case WORDS:
+                cout << "Guessing information you provide is First_Name.........." << endl;
+                break;
+            case DATE:
+                cout << "Guessing information you provide is Date.........." << endl;
+                break;
+            case EMAIL:
+                cout << "Guessing information you provide is Email.........." << endl;
+                break;
+            default:
+                cout << "Input is invalid. Please try again." << endl;
+                break;
+            }
         }
     }
     return false;
