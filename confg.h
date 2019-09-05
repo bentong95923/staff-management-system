@@ -4,7 +4,7 @@
 #define ORGANIZATION_NAME "Panda Limited"
 
 /* 
- * conf.h is the header file which defines and stores the all the settings for this app.
+ * confg.h is the header file which defines and stores the all the settings for this app.
  * It aims to not affect any part of the program when the structure of tables are required to be changed / added.
  * This header file can be edited for altering table structure to fit the organization purpose.
  */
