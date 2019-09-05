@@ -93,7 +93,7 @@ bool View::execute(sqlite3 **db)
 {
     // Run by sql
     string userInputTemp = "";
-    string sql = "select * from " + TABLE_NAME.at(0) + " where " + this->getUserInput().at(0) + "='" + this->getUserInput().at(1)+"'";
+    string sql = "select * from " + TABLE_NAME.at(0) + " where " + this->getUserInput().at(0) + "='" + this->getUserInput().at(1)+"'" + "collate nocase";
     
     char *zErrMsg = 0;
     cout << "looking for staff member's profile with " + this->getUserInput().at(0) + " " + this->getUserInput().at(1) + "..............................";
