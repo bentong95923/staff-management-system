@@ -1,9 +1,9 @@
 #ifndef VIEW_H_
 #define VIEW_H_
 
-#include "operation.h"
+#include "action.h"
 
-class View : public Operation
+class View : public Action
 {
 public:
     View();

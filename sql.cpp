@@ -51,14 +51,14 @@ void SQL::disconnect_database(sqlite3 **db)
     }
 }
 
+// SQL callback function for printing records according to SQL enquiry
 int SQL::sql_callback(void *NotUsed, int argc, char **argv, char **azColName)
 {
-    int i;
-    for (i = 0; i < argc; i++)
+    cout << endl;
+    for (int i = 0; i < argc; i++)
     {
-        cout << azColName[i] << " = " << (argv[i] ? argv[i] : "NULL") << endl;
+        cout << azColName[i] << ": " << (argv[i] ? argv[i] : "NULL") << endl;
         // printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
     }
-    cout << endl;
     return 0;
 }

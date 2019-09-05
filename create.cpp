@@ -28,7 +28,7 @@ bool Create::askUserInput()
     char s[256];
     while (true)
     {
-        cout << "Press ENTER when you are ready to input the above information, or type 'menu' to go back to main menu." << endl;
+        cout << "Press ENTER when you are ready, or type 'menu' to go back to main menu." << endl;
         cout << "> ";
         cin.getline(s, 256);
         string sss(s);
@@ -157,9 +157,9 @@ bool Create::execute(sqlite3 **db)
 {
     // Run by sql
     string userInputTemp = "";
-    string sql = "INSERT INTO " + TABLE_NAME.at(0) + " (" +
+    string sql = "insert into " + TABLE_NAME.at(0) + " (" +
                  VectorExtension::vector_to_string(ALL_FIELDS_TABLE_0, ",") +
-                 ") VALUES (" +
+                 ") values (" +
                  VectorExtension::vector_to_string(this->getUserInput(), ",") +
                  ")";
 
@@ -168,8 +168,8 @@ bool Create::execute(sqlite3 **db)
     int rc = sqlite3_exec(*db, sql.c_str(), SQL::sql_callback, 0, &zErrMsg);
     if (rc != SQLITE_OK)
     {
-        cout << "fail! (";
-        cerr << "SQL error: " << zErrMsg << ")" << endl;
+        cout << "fail!" << endl;
+        cerr << "SQL error: " << zErrMsg << endl;
         sqlite3_free(zErrMsg);
     }
     else
@@ -182,7 +182,7 @@ bool Create::execute(sqlite3 **db)
     char s[256];
     while (true)
     {
-        cout << "Type 'create' to create a new profile, or press ENTER to go back to main menu." << endl;
+        cout << "Type 'menu' to go back to main menu, or press ENTER to create another staff memeber's profile." << endl;
         cout << "> ";
         cin.getline(s, 256);
         string sss(s);
@@ -190,15 +190,14 @@ bool Create::execute(sqlite3 **db)
         // Trim whitespace
         sss = trim(sss);
         istringstream parse(sss);
-        if (sss == "create")
+        if (sss == "menu")
         {
-            // cout << "hihi" << endl;
-            return true;
+            return false;
             break;
         }
         else if (sss.size() == 0)
         {
-            return false;
+            return true;
             break;
         }
         else

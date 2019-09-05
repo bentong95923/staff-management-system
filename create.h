@@ -1,9 +1,9 @@
 #ifndef CREATE_H_
 #define CREATE_H_
 
-#include "operation.h"
+#include "action.h"
 
-class Create : public Operation
+class Create : public Action
 {
 public:
     Create();

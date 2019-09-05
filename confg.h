@@ -24,7 +24,7 @@ using namespace std;
     const vector<int> OPTIONAL_FIELDS_TABLE_0 = {1, 3, 6, 8}; // Position for the field that is optional
     const vector<string> DATA_TYPE_N_KEYWORDS = {"text not null", "text", "text not null", "date", "text not null", "text not null", "text", "text not null", "real"};
     const string SQL_CREATE_TABLE_0 = "create table " + TABLE_NAME.at(0) + "(\
-                id integer primary key autoincrement," +
+                ID integer primary key autoincrement," +
                                       ALL_FIELDS_TABLE_0.at(0) + " text not null," 
                                       + ALL_FIELDS_TABLE_0.at(1) + " text,"
                                       + ALL_FIELDS_TABLE_0.at(2) + " text not null," 

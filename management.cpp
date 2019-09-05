@@ -32,12 +32,11 @@ void System::view()
     cout << endl;
     cout << "Welcome to " << ORGANIZATION_NAME << "'s Staff Management System!" << endl;
     cout << "-----------------------------------------------------------" << endl;
-    cout << endl;
-    cout << "Please select the following actions by entering the corresponding number:" << endl;
-    cout << "1 - View a staff member's profile" << endl;
-    cout << "2 - Edit a staff member's profile" << endl;
-    cout << "3 - Create a staff member's profile" << endl;
-    cout << "4 - Delete a staff member's profile" << endl;
+    cout << "Please enter the number which corresponding to the following operation:" << endl;
+    cout << "1 - View staff member's profiles" << endl;
+    cout << "2 - Edit staff member's profiles" << endl;
+    cout << "3 - Create staff member's profiles" << endl;
+    cout << "4 - Delete staff member's profiles" << endl;
     cout << "To quit the system, type 'quit'." << endl;
 }
 

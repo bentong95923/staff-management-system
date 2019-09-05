@@ -1,5 +1,5 @@
-#ifndef OPERATION_H_
-#define OPERATION_H_
+#ifndef ACTION_H_
+#define ACTION_H_
 
 #include <iostream>
 #include <sstream>
@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Operation
+class Action
 {
 private:
     vector<string> userInput;

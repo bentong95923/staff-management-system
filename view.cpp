@@ -3,7 +3,7 @@
 View::View()
 {
     // Initialize user input vector
-    vector<string> v(AVAILABLE_SEARCH_FIELD_TABLE_0.size() + 1, "");
+    vector<string> v(2, "");
     this->setUserInput(v);
 }
 
@@ -44,46 +44,96 @@ bool View::askUserInput()
         }
         else
         {
-            enum DataType
-            {
-                ID,
-                WORDS,
-                DATE,
-                EMAIL,
-                INVALID
-            };
+            cout << "Guessing the type of information you provided is..........";
 
-            DataType type;
-
-            Validator::validate_positive_integer(sss) ? type = ID : Validator::validate_words_only(sss) ? type = WORDS : Validator::validate_date(sss) ? type = DATE : Validator::validate_email(sss) ? type = EMAIL : type = INVALID;
-            string sql = "select * from " + TABLE_NAME.at(0) + " where "; // select * from Staff_Details where id = 2
-            
-            switch (type)
+            vector<string> temp = {};
+            if (Validator::validate_positive_integer(sss))
             {
-            case ID:
-                cout << "Guessing information you provide is ID.........." << endl;
+                cout << "ID!" << endl;
+                temp.push_back("ID");
+                temp.push_back(sss);
+                this->setUserInput(temp);
                 break;
-            case WORDS:
-                cout << "Guessing information you provide is First_Name.........." << endl;
+            }
+            else if (Validator::validate_words_only(sss))
+            {
+                cout << "First_Name!" << endl;
+                temp.push_back("First_Name");
+                temp.push_back(sss);
+                this->setUserInput(temp);
                 break;
-            case DATE:
-                cout << "Guessing information you provide is Date.........." << endl;
+            }
+            else if (Validator::validate_date(sss))
+            {
+                cout << "DOB!" << endl;
+                temp.push_back("DOB");
+                temp.push_back(sss);
+                this->setUserInput(temp);
                 break;
-            case EMAIL:
-                cout << "Guessing information you provide is Email.........." << endl;
+            }
+            else if (Validator::validate_email(sss))
+            {
+                cout << "Email!" << endl;
+                temp.push_back("Email");
+                temp.push_back(sss);
+                this->setUserInput(temp);
                 break;
-            default:
-                cout << "Input is invalid. Please try again." << endl;
-                break;
+            }
+            else
+            {
+                cout << "Invalid!" << endl;
+                cout << "Please try again." << endl;
             }
         }
     }
-    return false;
+    return true;
 }
 
 bool View::execute(sqlite3 **db)
 {
-    return false;
+    // Run by sql
+    string userInputTemp = "";
+    string sql = "select * from " + TABLE_NAME.at(0) + " where " + this->getUserInput().at(0) + "='" + this->getUserInput().at(1)+"'";
+    
+    char *zErrMsg = 0;
+    cout << "looking for staff member's profile with " + this->getUserInput().at(0) + " " + this->getUserInput().at(1) + "..............................";
+    int rc = sqlite3_exec(*db, sql.c_str(), SQL::sql_callback, 0, &zErrMsg);
+    if (rc != SQLITE_OK)
+    {
+        cout << "fail!" << endl;
+        cerr << "SQL error: " << zErrMsg << endl;
+        sqlite3_free(zErrMsg);
+    }
+    else
+    {
+        cout << "Profile(s) found!" << endl;
+    }
+    char s[256];
+    while (true)
+    {
+        cout << "Type 'menu' to go back to main menu, or press ENTER to view other staff memeber's profile." << endl;
+        cout << "> ";
+        cin.getline(s, 256);
+        string sss(s);
+
+        // Trim whitespace
+        sss = trim(sss);
+        istringstream parse(sss);
+        if (sss == "menu")
+        {
+            return false;
+            break;
+        }
+        else if (sss.size() == 0)
+        {
+            return true;
+            break;
+        }
+        else
+        {
+            cout << "Input is invalid. Please try again." << endl;
+        }
+    }
 }
 
 View::~View()
