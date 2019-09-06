@@ -1,6 +1,6 @@
 #include "sqlite/sqlite3.h"
-#include "management.h"
-#include "sql.h"
+#include "system/management.h"
+#include "misc/sql.h"
 
 int main()
 {

@@ -2,8 +2,8 @@
 #define SQL_H_
 
 #include <iostream>
-#include "sqlite/sqlite3.h"
-#include "confg.h"
+#include "../sqlite/sqlite3.h"
+#include "../confg.h"
 
 using namespace std;
 

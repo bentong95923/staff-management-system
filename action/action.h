@@ -4,12 +4,12 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include "sqlite/sqlite3.h"
-#include "sql.h"
+#include "../sqlite/sqlite3.h"
+#include "../misc/sql.h"
 
-#include "vectorext.h"
-#include "trim.h"
-#include "validator.h"
+#include "../misc/vectorext.h"
+#include "../misc/trim.h"
+#include "../misc/validator.h"
 
 using namespace std;
 

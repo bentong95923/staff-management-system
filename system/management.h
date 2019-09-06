@@ -1,9 +1,9 @@
 #ifndef MANAGEMENT_H_
 #define MANAGEMENT_H_
 
-#include "sqlite/sqlite3.h"
-#include "create.h"
-#include "view.h"
+#include "../sqlite/sqlite3.h"
+#include "../action/create.h"
+#include "../action/view.h"
 
 enum ActionSelection
 {

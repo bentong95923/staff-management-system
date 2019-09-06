@@ -19,10 +19,13 @@
             "type": "shell",
             "command": "g++",
             "args": [
+                "misc\\*.cpp",
+                "system\\*.cpp",
+                "action\\*.cpp",
                 "*.cpp",
                 "bin\\sqlite3.o",
                 "-o",
-                "bin\\main"
+                "bin\\staff"
             ],
             "group": "build",
             "dependsOn": [
@@ -33,7 +36,7 @@
         {
             "label": "run main",
             "type": "shell",
-            "command": "bin\\main",
+            "command": "bin\\staff",
             "group": {
                 "kind": "build",
                 "isDefault": true,
