@@ -4,6 +4,7 @@
 #include "../sqlite/sqlite3.h"
 #include "../action/create.h"
 #include "../action/view.h"
+#include "../action/delete.h"
 
 enum ActionSelection
 {

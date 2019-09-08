@@ -120,9 +120,16 @@ bool System::execute()
     }
     case DELETE:
     {
-        /* code */
-        cout << "Delete" << endl;
-        return false;
+        Delete *op = new Delete();
+        op->view();
+        if (!op->askUserInput())
+        {
+            return false;
+        }
+        else
+        {
+            return op->execute(this->db);
+        }
         break;
     }
 
