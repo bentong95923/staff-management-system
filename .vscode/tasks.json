@@ -7,9 +7,9 @@
             "command": "gcc",
             "args": [
                 "-c",
-                "sqlite\\sqlite3.c",
+                "sqlite/sqlite3.c",
                 "-o",
-                "bin\\sqlite3.o"
+                "bin/sqlite3.o"
             ],
             "group": "build",
             "problemMatcher": []
@@ -19,13 +19,13 @@
             "type": "shell",
             "command": "g++",
             "args": [
-                "misc\\*.cpp",
-                "system\\*.cpp",
-                "action\\*.cpp",
+                "misc/*.cpp",
+                "system/*.cpp",
+                "action/*.cpp",
                 "*.cpp",
-                "bin\\sqlite3.o",
+                "bin/sqlite3.o",
                 "-o",
-                "bin\\staff"
+                "bin/staff"
             ],
             "group": "build",
             "dependsOn": [
@@ -36,7 +36,7 @@
         {
             "label": "run main",
             "type": "shell",
-            "command": "bin\\staff",
+            "command": "bin/staff",
             "group": {
                 "kind": "build",
                 "isDefault": true,

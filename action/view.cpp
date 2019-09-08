@@ -93,11 +93,12 @@ bool View::execute(sqlite3 **db)
 {
     // Run by sql
     string userInputTemp = "";
-    string sql = "select * from " + TABLE_NAME.at(0) + " where " + this->getUserInput().at(0) + "='" + this->getUserInput().at(1)+"'" + "collate nocase";
-    
+    string sql = "select * from " + TABLE_NAME.at(0) + " where " + this->getUserInput().at(0) + "='" + this->getUserInput().at(1) + "'" + "collate nocase";
+
     char *zErrMsg = 0;
     cout << "looking for staff member's profile with " + this->getUserInput().at(0) + " " + this->getUserInput().at(1) + "..............................";
-    int rc = sqlite3_exec(*db, sql.c_str(), SQL::sql_callback, 0, &zErrMsg);
+    int numResult = 0;
+    int rc = sqlite3_exec(*db, sql.c_str(), SQL::sql_callback, &numResult, &zErrMsg);
     if (rc != SQLITE_OK)
     {
         cout << "fail!" << endl;
@@ -106,8 +107,19 @@ bool View::execute(sqlite3 **db)
     }
     else
     {
-        cout << "Profile(s) found!" << endl;
+        cout << endl;
+        if (numResult > 0)
+        {
+            string s = numResult > 1 ? "s" : "";
+            cout << numResult << " profile" + s + " found." << endl;
+        }
+        else
+        {
+            cout << "no profiles found!" << endl;
+        }
+        cout << endl;
     }
+
     char s[256];
     while (true)
     {
