@@ -61,7 +61,7 @@ bool System::askUserInput()
         }
         else if (Validator::validate_positive_integer(sss))
         {
-            if (stoi(sss) >= 1 && stoi(sss) <= 4)
+            if (stoi(sss) >= (int)VIEW && stoi(sss) <= (int)DELETE)
             {
                 this->setUserInput((ActionSelection)stoi(sss));
                 validInput = true;
@@ -99,9 +99,16 @@ bool System::execute()
     }
     case EDIT:
     {
-        /* code */
-        cout << "Edit" << endl;
-        return false;
+        Edit *op = new Edit();
+        op->view();
+        if (!op->askUserInput())
+        {
+            return false;
+        }
+        else
+        {
+            return op->execute(this->db);
+        }
         break;
     }
     case CREATE:

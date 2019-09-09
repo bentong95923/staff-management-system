@@ -15,6 +15,7 @@ public:
     static bool validate_email(string email);
     static bool validate_mobile(string mobile);
     static bool validate_positive_integer(string n);
+    static bool validate_input_by_index(string input, int index);
 };
 
 #endif

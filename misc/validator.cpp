@@ -29,3 +29,35 @@ bool Validator::validate_date(string date)
 {
     return regex_match(date, regex("^((2000|2400|2800|(19|2[0-9](0[48]|[2468][048]|[13579][26])))-02-29)$|^(((19|2[0-9])[0-9]{2})-02-(0[1-9]|1[0-9]|2[0-8]))$|^(((19|2[0-9])[0-9]{2})-(0[13578]|10|12)-(0[1-9]|[12][0-9]|3[01]))$|^(((19|2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))$"));
 }
+
+bool Validator::validate_input_by_index(string input, int index)
+{
+    switch (index)
+    {
+    case 0:
+    case 1:
+    case 2:
+    case 4:
+    case 5:
+        return Validator::validate_words_only(input);
+        break;
+    case 3:
+        return Validator::validate_date(input);
+        break;
+    case 6:
+        return Validator::validate_landline(input);
+        break;
+    case 7:
+        return Validator::validate_mobile(input);
+        break;
+    case 8:
+        return Validator::validate_email(input);
+        break;
+    case 9:
+        return Validator::validate_positive_integer(input);
+        break;
+    default:
+        return false;
+        break;
+    }
+}

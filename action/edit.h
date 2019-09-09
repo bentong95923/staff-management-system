@@ -1,16 +1,17 @@
-#ifndef CREATE_H_
-#define CREATE_H_
+#ifndef EDIT_H_
+#define EDIT_H_
 
 #include "action.h"
 
-class Create : public Action
+class Edit : public Action
 {
 public:
-    Create();
-    ~Create();
+    Edit();
+    ~Edit();
     void view();
     bool askUserInput();
     bool execute(sqlite3 **db);
+    bool edit(sqlite3 **db);
 };
 
 #endif

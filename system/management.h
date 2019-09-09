@@ -2,8 +2,9 @@
 #define MANAGEMENT_H_
 
 #include "../sqlite/sqlite3.h"
-#include "../action/create.h"
 #include "../action/view.h"
+#include "../action/edit.h"
+#include "../action/create.h"
 #include "../action/delete.h"
 
 enum ActionSelection

@@ -6,10 +6,6 @@ Delete::Delete()
     this->setUserInput(v);
 }
 
-Delete::~Delete()
-{
-}
-
 void Delete::view()
 {
     cout << "WARNING! The profile CANNOT be recovered after it is deleted. It cannot be UNDONE!" << endl;
@@ -116,4 +112,8 @@ bool Delete::execute(sqlite3 **db)
     }
 
     return false;
+}
+
+Delete::~Delete()
+{
 }

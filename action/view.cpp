@@ -9,7 +9,7 @@ View::View()
 
 void View::view()
 {
-    cout << "To look up a profile, you will need to provide one of the following:" << endl;
+    cout << "To view/edit a profile, you will need to provide one of the following:" << endl;
     cout << "- ID " << endl;
     for (int j = 0; j < ALL_FIELDS_TABLE_0.size(); j++)
     {
@@ -122,7 +122,7 @@ bool View::execute(sqlite3 **db)
     char s[256];
     while (true)
     {
-        cout << "Type 'menu' to go back to main menu, or press ENTER to view other staff memeber's profile." << endl;
+        cout << "Type 'menu' to go back to main menu, or press ENTER to view/edit other staff memeber's profile." << endl;
         cout << "> ";
         cin.getline(s, 256);
         string sss(s);

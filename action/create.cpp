@@ -65,7 +65,7 @@ bool Create::askUserInput()
                 // Trim whitespace
                 sss = trim(sss);
                 istringstream parse(sss);
-                if (this->validateInput(sss, i) || sss.size() == 0)
+                if (Validator::validate_input_by_index(sss, i) || sss.size() == 0)
                 {
                     temp.push_back(sss);
                     break;
@@ -95,7 +95,7 @@ bool Create::askUserInput()
                 // Trim whitespace
                 sss = trim(sss);
                 istringstream parse(sss);
-                if (this->validateInput(sss, i))
+                if (Validator::validate_input_by_index(sss, i))
                 {
                     temp.push_back(sss);
                     break;
@@ -118,39 +118,6 @@ bool Create::askUserInput()
         ;
     this->setUserInput(temp);
     return true;
-}
-
-bool Create::validateInput(string input, int i)
-{
-    switch (i)
-    {
-    case 0:
-    case 1:
-    case 2:
-    case 4:
-    case 5:
-        return Validator::validate_words_only(input);
-        break;
-    case 3:
-        return Validator::validate_date(input);
-        break;
-    case 6:
-        return Validator::validate_landline(input);
-        break;
-    case 7:
-        return Validator::validate_mobile(input);
-        break;
-    case 8:
-        return Validator::validate_email(input);
-        break;
-    case 9:
-        return Validator::validate_positive_integer(input);
-        break;
-    default:
-        cerr << "Error in " << __func__ << ": wrong argument 'i' is given" << endl;
-        return false;
-        break;
-    }
 }
 
 bool Create::execute(sqlite3 **db)
