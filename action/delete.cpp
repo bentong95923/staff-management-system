@@ -106,7 +106,8 @@ bool Delete::execute(sqlite3 **db)
         }
         else
         {
-            cout << "no profiles found! Please try again." << endl;
+            cout << "no profiles found!" << endl;
+            cout << "Please try again." << endl;
             return true;
         }
     }
