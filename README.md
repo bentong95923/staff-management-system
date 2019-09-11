@@ -29,16 +29,16 @@ Create action will only be available if there are no profiles in the database.
 ###### View (Selection 1)
 User can search any profiles by providing ID, First Name, DOB or Email.
 
-###### Edit (Selection 1)
+###### Edit (Selection 2)
 
 User can edit any profiles by providing ID. The profile will be displayed to user before editing.
 After entering the editing mode, user can specify the field(s) to be edited for the profile and change the content of the fields.
 Once finished editing, the system will give a preview to summarize what information will be changed of the profile, and will write changes to the database.
 
-###### Create (Selection 1)
+###### Create (Selection 3)
 User can create a new profile by filing information. * mean compulsory field to be filled.
 After user enter the information, database will automatically create the ID of the newly created profile.
 
-###### Delete (Selection 1)
+###### Delete (Selection 4)
 User can delete any profiles by providing ID. The profile will be displayed to user before deleting.
 Once user confirmed to delete a particular profile, it will be removed from the database permanently.
