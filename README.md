@@ -4,7 +4,7 @@ by Benjamin Tong
 This is an CMD application run with SQLite to for a staff management system in an organization. Visual Studio Code is used as the editor and builder of the application. Database will be created to store staff details.
 
 
-### Documentation
+# Documentation
 ##### Specification
 
 Language: C++, SQL (SQLite)
@@ -25,7 +25,7 @@ If the database (.db file) is not present then the application will automaticall
 Create action will only be available if there are no profiles in the database.
 <br />
 
-### Functionality:
+# Functionality:
 ###### View (Selection 1)
 User can search any profiles by providing ID, First Name, DOB or Email.
 
