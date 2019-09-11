@@ -1,4 +1,4 @@
-# See https://help.github.com/ignore-files/ for more about ignoring files.
-
+# Database tools viewer
+/tools
+# Database file
 /bin/data.db
-/tools/*
