@@ -3,12 +3,17 @@
 System::System(sqlite3 **db)
 {
     this->db = db;
+    this->numRecord = 0;
+    this->userInput = INVALID;
 }
 
 void System::run()
 {
+    SQL::connect_database(this->db);
     while (true)
     {
+        this->setUserInput(INVALID);
+        this->retrieveDatabaseRecords();
         this->view();
         if (this->askUserInput())
         {
@@ -25,19 +30,45 @@ void System::run()
             break;
         }
     }
+    SQL::disconnect_database(this->db);
 }
 
 void System::view()
 {
     cout << endl;
     cout << "Welcome to " << ORGANIZATION_NAME << "'s Staff Management System!" << endl;
-    cout << "-----------------------------------------------------------" << endl;
+    cout << "---------------------------------------------------------------------------" << endl;
+    cout << endl;
     cout << "Please enter the number which corresponding to the following operation:" << endl;
-    cout << "1 - View staff member's profiles" << endl;
-    cout << "2 - Edit staff member's profiles" << endl;
+    cout << "1 - View staff member's profiles" << (this->getNumRecord() == 0 ? " (DISABLED) " : "") << endl;
+    cout << "2 - Edit staff member's profiles" << (this->getNumRecord() == 0 ? " (DISABLED) " : "") << endl;
     cout << "3 - Create staff member's profiles" << endl;
-    cout << "4 - Delete staff member's profiles" << endl;
+    cout << "4 - Delete staff member's profiles" << (this->getNumRecord() == 0 ? " (DISABLED) " : "") << endl;
+    string tmp = "";
+    tmp = this->getNumRecord() == 0 ? "There are no profiles found in the database" : this->getNumRecord() == 1 ? "There is 1 profile found in the database" : "There are " + to_string(this->getNumRecord()) + " profiles in the database";
+    cout << endl;
+    cout << "     ---   " << tmp << "   ---     " << endl;
+    cout << endl;
     cout << "To quit the system, type 'quit'." << endl;
+    cout << endl;
+}
+
+void System::retrieveDatabaseRecords()
+{
+    string sql = "select count(*) from " + TABLE_NAME.at(0);
+    char *zErrMsg = 0;
+    int countSql = 0;
+    /* Execute SQL statement */
+    int rc = sqlite3_exec(*db, sql.c_str(), SQL::sql_callback_init_check, &countSql, &zErrMsg);
+    if (rc != SQLITE_OK)
+    {
+        cerr << "SQL error in " << __func__ << ": " << zErrMsg << endl;
+        sqlite3_free(zErrMsg);
+    }
+    else
+    {
+        this->setNumRecord(countSql);
+    }
 }
 
 bool System::askUserInput()
@@ -63,8 +94,16 @@ bool System::askUserInput()
         {
             if (stoi(sss) >= (int)VIEW && stoi(sss) <= (int)DELETE)
             {
-                this->setUserInput((ActionSelection)stoi(sss));
-                validInput = true;
+                if ((this->getNumRecord() == 0) && stoi(sss) != (int)CREATE)
+                {
+                    cout << "You cannot view, edit or delete any profiles as there are no profiles found in the database. Please try again." << endl;
+                    return true;
+                }
+                else
+                {
+                    this->setUserInput((ActionSelection)stoi(sss));
+                    validInput = true;
+                }
             }
             else
             {
@@ -157,6 +196,16 @@ ActionSelection System::getUserInput()
 void System::setUserInput(ActionSelection s)
 {
     this->userInput = s;
+}
+
+int System::getNumRecord()
+{
+    return this->numRecord;
+}
+
+void System::setNumRecord(int num)
+{
+    this->numRecord = num;
 }
 
 System::~System()

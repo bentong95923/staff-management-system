@@ -95,7 +95,7 @@ bool View::execute(sqlite3 **db)
     string sql = "select * from " + TABLE_NAME.at(0) + " where " + this->getUserInput().at(0) + "='" + this->getUserInput().at(1) + "'" + "collate nocase";
 
     char *zErrMsg = 0;
-    cout << "looking for staff member's profile(s) with " + this->getUserInput().at(0) + " " + this->getUserInput().at(1) + "..............................";
+    cout << "Looking for staff member's profile(s) with " + this->getUserInput().at(0) + " " + this->getUserInput().at(1) + "..............................";
     int numResult = 0;
     int rc = sqlite3_exec(*db, sql.c_str(), SQL::sql_callback, &numResult, &zErrMsg);
     if (rc != SQLITE_OK)

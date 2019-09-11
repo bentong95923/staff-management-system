@@ -2,18 +2,34 @@
 
 void SQL::connect_database(sqlite3 **db)
 {
-    // Open or create database
-    int rc = sqlite3_open("bin\\data.db", db);
+    int rcR = sqlite3_open_v2("bin\\data.db", db, SQLITE_OPEN_READONLY, 0);
 
-    if (rc != SQLITE_OK)
+    SQL::disconnect_database(db, false);
+
+    if (rcR != SQLITE_OK)
     {
-        // fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(*db));
-        cerr << "Can't open database: " << sqlite3_errmsg(*db) << endl;
+        cout << "Creating database..............................";
     }
     else
     {
-        // fprintf(stdout, "Opened database successfully\n");
-        cout << "Opened database successfully" << endl;
+        cout << "Connecting database..............................";
+    }
+    // Open or create database
+    int rcO = sqlite3_open("bin\\data.db", db);
+
+    if (rcO != SQLITE_OK)
+    {
+        cerr << "failed! " << endl;
+        cerr << "SQL Error: " << sqlite3_errmsg(*db) << endl;
+    }
+    else
+    {
+        cout << "success!" << endl;
+        if (rcR != SQLITE_OK)
+        {
+            cout << "Initializing database..............................";
+            SQL::create_table(db);
+        }
     }
 }
 
@@ -25,30 +41,41 @@ void SQL::create_table(sqlite3 **db)
     int rc = sqlite3_exec(*db, SQL_CREATE_TABLE_0.c_str(), SQL::sql_callback, 0, &zErrMsg);
     if (rc != SQLITE_OK)
     {
-        // fprintf(stderr, "SQL error: %s\n", zErrMsg);
+        cerr << "failed!" << endl;
         cerr << "SQL error in " << __func__ << ": " << zErrMsg << endl;
         sqlite3_free(zErrMsg);
     }
     else
     {
-        // fprintf(stdout, "Table created successfully\n");
-        cout << "Table created successfully" << endl;
+        cout << "success!" << endl;
     }
 }
 
-void SQL::disconnect_database(sqlite3 **db)
+void SQL::disconnect_database(sqlite3 **db, bool displayMsg)
 {
     char *zErrMsg = 0;
     int rc = sqlite3_close(*db);
     if (rc != SQLITE_OK)
     {
+        cerr << "Error occurs when closing!" << endl;
         cerr << "SQL error in " << __func__ << ": " << zErrMsg << endl;
         sqlite3_free(zErrMsg);
     }
     else
     {
-        cout << "Database closed successfully." << endl;
+        if (displayMsg)
+        {
+            cout << "Database connection closed. Bye!" << endl;
+        }
     }
+}
+
+// SQL callback function for printing records according to SQL enquiry
+int SQL::sql_callback_init_check(void *trackResult, int argc, char **argv, char **azColName)
+{
+    int *count = (int *)trackResult;
+    *count = stoi(argv[0]);
+    return 0;
 }
 
 // SQL callback function for printing records according to SQL enquiry
@@ -64,7 +91,6 @@ int SQL::sql_callback(void *trackResult, int argc, char **argv, char **azColName
     for (int i = 0; i < argc; i++)
     {
         cout << azColName[i] << ": " << (argv[i] ? argv[i] : "NULL") << endl;
-        // printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
     }
 
     return 0;

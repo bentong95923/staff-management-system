@@ -131,7 +131,7 @@ bool Create::execute(sqlite3 **db)
                  ")";
 
     char *zErrMsg = 0;
-    cout << "creating ..............................";
+    cout << "Creating ..............................";
     int rc = sqlite3_exec(*db, sql.c_str(), SQL::sql_callback, 0, &zErrMsg);
     if (rc != SQLITE_OK)
     {

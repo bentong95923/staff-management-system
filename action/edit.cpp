@@ -50,7 +50,7 @@ bool Edit::execute(sqlite3 **db)
     string sql = "select * from " + TABLE_NAME.at(0) + " where id = '" + this->getUserInput().at(0) + "'";
 
     char *zErrMsg = 0;
-    cout << "looking for staff member's profile(s) with ID " + this->getUserInput().at(0) + "..............................";
+    cout << "Looking for staff member's profile(s) with ID " + this->getUserInput().at(0) + "..............................";
     int numResult = 0;
     int rc = sqlite3_exec(*db, sql.c_str(), SQL::sql_callback, &numResult, &zErrMsg);
     if (rc != SQLITE_OK)
@@ -238,7 +238,7 @@ bool Edit::edit(sqlite3 **db)
 
     string sql = "update " + TABLE_NAME.at(0) + " set " + sqlColValues + " where ID = '" + this->getUserInput().at(0) + "'";
     char *zErrMsg = 0;
-    cout << "writing changes to database..............................";
+    cout << "Writing changes to database..............................";
     int numResult = 0;
     int rc = sqlite3_exec(*db, sql.c_str(), SQL::sql_callback, &numResult, &zErrMsg);
     if (rc != SQLITE_OK)
