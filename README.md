@@ -8,27 +8,30 @@ This is one of my self project in which I aim to use different tech and create u
 # Documentation
 ###### Specification
 
-Language: C++, SQL (SQLite)
+Language: C++, SQL (SQLite), C (only used for building source file for SQLite)
 
 IDE: Visual Studio Code
+
+Compiler: gcc - building SQLite source file, g++ - building the app
 
 Environment: Windows 7 or above, Windows Server 2008 or above
 This application has not been tested under Linux environment but it may work with slight or no amendment on the building process.
 
 ###### Build the application
 1. Download Visual Studio Code (VS Code) for Windows on https://code.visualstudio.com/, and install it.
-2. Open VS Code once installed, and click "File" -> "Open Folder...", then open the directory with "main.cpp".
-3. Press Ctrl + Alt + B to build and run the appliaction.
+2. Clone this repo via git or click "Clone or download".
+3. Open VS Code once installed, and click "File" -> "Open Folder...", then open the directory with "main.cpp".
+4. Press Ctrl + Alt + B to build and run the appliaction.
 
-###### Initialization:
+###### Initialization
 If the database (.db file) is not present then the application will automatically create a new emply database. The application will ask the user to create a staff member's profile if there are no records in the database.
 <br />
 Create action will only be available if there are no profiles in the database.
 <br />
 
-# Functionality:
+# Functionality
 ###### View (Selection 1)
-User can search any profiles by providing ID, First Name, DOB or Email.
+User can search to view any profiles by providing ID, First Name, DOB or Email.
 
 ###### Edit (Selection 2)
 
@@ -38,7 +41,7 @@ Once finished editing, the system will give a preview to summarize what informat
 
 ###### Create (Selection 3)
 User can create a new profile by filing information. * mean compulsory field to be filled.
-After user enter the information, database will automatically create the ID of the newly created profile.
+After user entered the information, database will automatically create the ID of the newly created profile.
 
 ###### Delete (Selection 4)
 User can delete any profiles by providing ID. The profile will be displayed to user before deleting.
