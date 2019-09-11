@@ -3,35 +3,30 @@ by Benjamin Tong
 
 This is an CMD application run with SQLite to for a staff management system in an organization. Visual Studio Code is used as the editor and builder of the application. Database will be created to store staff details.
 
-<br />
 
-# Documentation
-<br />
-
-## Specification
+### Documentation
+###### Specification
 
 Language: C++, SQL (SQLite)
 
-IDE: 
+IDE: Visual Studio Code
 
 Environment: Windows 7 or above, Windows Server 2008 or above
 This application has not been tested under Linux environment but it may work with slight or no amendment on the building process.
 
-
-
-## Build the application
+###### Build the application
 1. Download Visual Studio Code (VS Code) for Windows on https://code.visualstudio.com/, and install it.
 2. Open VS Code once installed, and click "File" -> "Open Folder...", then open the directory with "main.cpp".
 3. Press Ctrl + Alt + B to build and run the appliaction.
 <br />
 
-## Initialization:
+###### Initialization:
 If the database (.db file) is not present then the application will automatically create a new emply database. The application will ask the user to create a staff member's profile if there are no records in the database.
 <br />
 Create action will only be available if there are no profiles in the database.
 <br />
 
-## Functionality:
+### Functionality:
 ###### - View (Selection 1)
 User can search any profiles by providing ID, First Name, DOB or Email.
 <br />
