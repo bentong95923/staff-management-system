@@ -14,13 +14,14 @@ IDE used: Visual Studio Code
 
 Compiler: gcc - building SQLite source file, g++ - building the app
 
-Environment: Windows 7 or above, Windows Server 2008 or above
-This application has not been tested under Linux environment but it may work with slight or no amendment on the building process.
+Support Environment: <br />
+Windows 7 or above, Windows Server 2008 or above <br />
+Linux (It was only tested in Ubuntu but should be fine in any Linux environment)
 
 ### Pre-installation
 It is required to install the gcc and g++ compiler in order to build the application. <br />
 Suggested source for compiler: <br />
-Windows - Cygwin (http://www.cygwin.com/)
+Windows - Cygwin (http://www.cygwin.com/) <br />
 Linux - by the command as follow: <br />
 ```
 $ sudo apt install g++
@@ -61,11 +62,11 @@ $ sudo apt-get install sqlite3 libsqlite3-dev
 ```
 2. Build the application with SQLite package which was just installed
 ```
-g++ misc/*.cpp system/*.cpp action/*.cpp *.cpp -o bin/staff -lsqlite3
+$ g++ misc/*.cpp system/*.cpp action/*.cpp *.cpp -o bin/staff -lsqlite3
 ```
 3. Run the application (Make sure it is a <b>back</b> slash not a <b>forward</b> slash)
 ```
-bin/staff
+$ bin/staff
 ```
 
 ### Initialization
