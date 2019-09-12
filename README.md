@@ -10,7 +10,7 @@ This is one of my self project in which I aim to use different tech and create u
 
 Language: C++, SQL (SQLite), C (only used for building source file for SQLite)
 
-IDE: Visual Studio Code
+IDE used: Visual Studio Code
 
 Compiler: gcc - building SQLite source file, g++ - building the app
 
@@ -19,9 +19,9 @@ This application has not been tested under Linux environment but it may work wit
 
 ### Pre-installation
 It is required to install the gcc and g++ compiler in order to build the application. <br />
-Suggested source for compiler:
+Suggested source for compiler: <br />
 Windows - Cygwin (http://www.cygwin.com/)
-Linux - by the command as follow:
+Linux - by the command as follow: <br />
 ```
 $ sudo apt install g++
 ```
@@ -31,25 +31,25 @@ $ sudo apt install build-essential
 ```
 
 ### Build the application (Windows)
-###### with Visual Studio Code
+#### with Visual Studio Code
 1. Download Visual Studio Code (VS Code) for Windows on https://code.visualstudio.com/, and install it.
 2. Clone this repo via git or click "Clone or download".
 3. Open VS Code once installed, and click "File" -> "Open Folder...", then open the directory with "main.cpp".
 4. Press Ctrl + Alt + B. VS Code will automatically run the commands to build and run the appliaction.
 
-###### without Visual Studio Code
+#### without Visual Studio Code
 1. Clone this repo via git or click "Clone or download".
 2. Open Command Prompt or PowerShell, and run the following command lines:
 
-a) Build the SQLite source file
+##### a) Build the SQLite source file
 ```
 gcc -c sqlite/sqlite3.c -o bin/sqlite3.o
 ```
-b) Build the application with the source file
+##### b) Build the application with the source file
 ```
 g++ misc/*.cpp system/*.cpp action/*.cpp *.cpp bin/sqlite3.o -o bin/staff
 ```
-c) Run the application (Make sure it is a <b>forward</b> slash not a <b>back</b> slash)
+##### c) Run the application (Make sure it is a <b>forward</b> slash not a <b>back</b> slash)
 ```
 bin\staff
 ```
