@@ -4,7 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include "../sqlite/sqlite3.h"
+#include "../sqlite3source.h"
 #include "../misc/sql.h"
 
 #include "../misc/vectorext.h"
