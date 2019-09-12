@@ -2,7 +2,7 @@
 
 void SQL::connect_database(sqlite3 **db)
 {
-    int rcR = sqlite3_open_v2("bin/data.db", db, SQLITE_OPEN_READONLY, 0);
+    int rcR = sqlite3_open_v2(DBPath.c_str(), db, SQLITE_OPEN_READONLY, 0);
 
     SQL::disconnect_database(db, false);
 
@@ -15,7 +15,7 @@ void SQL::connect_database(sqlite3 **db)
         cout << "Connecting database..............................";
     }
     // Open or create database
-    int rcO = sqlite3_open("bin\\data.db", db);
+    int rcO = sqlite3_open(DBPath.c_str(), db);
 
     if (rcO != SQLITE_OK)
     {

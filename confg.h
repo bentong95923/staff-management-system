@@ -16,6 +16,7 @@ using namespace std;
 // class AppConfig
 //{
 // private:
+    const string DBPath = "bin/data.db";
     const vector<string> TABLE_NAME = {"Staff_Details"}; // {Table 0, Table 1, Table 2, ......}
     // "Staff_Details" table
     const vector<string> ALL_FIELDS_TABLE_0 = {"First_Name", "Middle_Name", "Last_Name", "DOB", "Title", "Department", "Landline", "Mobile", "Email", "Salary"};
