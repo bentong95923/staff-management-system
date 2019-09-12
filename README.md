@@ -16,7 +16,7 @@ Compiler: gcc - building SQLite source file, g++ - building the app
 
 Support Environment: <br />
 Windows 7 or above, Windows Server 2008 or above <br />
-Linux (It was only tested in Ubuntu but should be fine in any Linux environment)
+Linux (It was only tested on Ubuntu 18.04 LTS but should work fine in any Linux environment)
 
 ### Pre-installation
 It is required to install the gcc and g++ compiler in order to build the application. <br />
