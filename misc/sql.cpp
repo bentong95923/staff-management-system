@@ -2,7 +2,7 @@
 
 void SQL::connect_database(sqlite3 **db)
 {
-    int rcR = sqlite3_open_v2("bin\\data.db", db, SQLITE_OPEN_READONLY, 0);
+    int rcR = sqlite3_open_v2("bin/data.db", db, SQLITE_OPEN_READONLY, 0);
 
     SQL::disconnect_database(db, false);
 
