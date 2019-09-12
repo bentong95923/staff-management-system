@@ -1,12 +1,12 @@
 # Staff Management System
-by Benjamin Tong
+###### by Benjamin Tong
 
 This is an CMD application run with SQLite to for a staff management system in an organization. Visual Studio Code is used as the editor and builder of the application. Database will be created to store staff details.
 
 This is one of my self project in which I aim to use different tech and create useful app.
 
 # Documentation
-###### Specification
+### Specification
 
 Language: C++, SQL (SQLite), C (only used for building source file for SQLite)
 
@@ -18,9 +18,9 @@ Environment: Windows 7 or above, Windows Server 2008 or above
 This application has not been tested under Linux environment but it may work with slight or no amendment on the building process.
 
 ### Pre-installation
-It is required to install the gcc and g++ compiler in order to build the application.
+It is required to install the gcc and g++ compiler in order to build the application. <br />
 Suggested source for compiler:
-Windows - Cygwin
+Windows - Cygwin (http://www.cygwin.com/)
 Linux - by the command as follow:
 ```
 $ sudo apt install g++
@@ -31,15 +31,16 @@ $ sudo apt install build-essential
 ```
 
 ### Build the application (Windows)
-- with Visual Studio Code
+###### with Visual Studio Code
 1. Download Visual Studio Code (VS Code) for Windows on https://code.visualstudio.com/, and install it.
 2. Clone this repo via git or click "Clone or download".
 3. Open VS Code once installed, and click "File" -> "Open Folder...", then open the directory with "main.cpp".
 4. Press Ctrl + Alt + B. VS Code will automatically run the commands to build and run the appliaction.
 
-- without Visual Studio Code
+###### without Visual Studio Code
 1. Clone this repo via git or click "Clone or download".
 2. Open Command Prompt or PowerShell, and run the following command lines:
+
 a) Build the SQLite source file
 ```
 gcc -c sqlite/sqlite3.c -o bin/sqlite3.o
