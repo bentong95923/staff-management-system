@@ -43,6 +43,11 @@
         "typeinfo": "cpp",
         "any": "cpp",
         "*.rh": "cpp",
-        "iterator": "cpp"
+        "iterator": "cpp",
+        "bitset": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "map": "cpp",
+        "regex": "cpp"
     }
 }
