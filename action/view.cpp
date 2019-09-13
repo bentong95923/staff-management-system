@@ -11,13 +11,9 @@ void View::view()
 {
     cout << "To view/edit a profile, you will need to provide one of the following:" << endl;
     cout << "- ID " << endl;
-    for (int j = 0; j < ALL_FIELDS_TABLE_0.size(); j++)
-    {
-        if (VectorExtension::is_element_in_vector(AVAILABLE_SEARCH_FIELD_TABLE_0, j))
-        {
-            cout << "- " << ALL_FIELDS_TABLE_0.at(j) << endl;
-        }
-    }
+    cout << "- " << FIRST_NAME_FIELD << endl;
+    cout << "- " << DOB_FIELD << endl;
+    cout << "- " << EMAIL_FIELD << endl;
 }
 
 bool View::askUserInput()
@@ -57,24 +53,24 @@ bool View::askUserInput()
             }
             else if (Validator::validate_words_only(sss))
             {
-                cout << "First_Name!" << endl;
-                temp.push_back("First_Name");
+                cout << FIRST_NAME_FIELD << "!" << endl;
+                temp.push_back(ALL_FIELDS_TABLE.at(0));
                 temp.push_back(sss);
                 this->setUserInput(temp);
                 break;
             }
             else if (Validator::validate_date(sss))
             {
-                cout << "DOB!" << endl;
-                temp.push_back("DOB");
+                cout << DOB_FIELD << "!" << endl;
+                temp.push_back(ALL_FIELDS_TABLE.at(3));
                 temp.push_back(sss);
                 this->setUserInput(temp);
                 break;
             }
             else if (Validator::validate_email(sss))
             {
-                cout << "Email!" << endl;
-                temp.push_back("Email");
+                cout << EMAIL_FIELD << "!" << endl;
+                temp.push_back(ALL_FIELDS_TABLE.at(8));
                 temp.push_back(sss);
                 this->setUserInput(temp);
                 break;
@@ -92,7 +88,7 @@ bool View::askUserInput()
 bool View::execute(sqlite3 **db)
 {
     // Run by sql
-    string sql = "select * from " + TABLE_NAME.at(0) + " where " + this->getUserInput().at(0) + "='" + this->getUserInput().at(1) + "'" + "collate nocase";
+    string sql = "select * from " + TABLE_NAME + " where " + this->getUserInput().at(0) + "='" + this->getUserInput().at(1) + "'" + "collate nocase";
 
     char *zErrMsg = 0;
     cout << "Looking for staff member's profile(s) with " + this->getUserInput().at(0) + " " + this->getUserInput().at(1) + "..............................";

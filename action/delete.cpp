@@ -42,7 +42,7 @@ bool Delete::askUserInput()
 
 bool Delete::execute(sqlite3 **db)
 {
-    string sql = "select * from " + TABLE_NAME.at(0) + " where ID = '" + this->getUserInput().at(0) + "'";
+    string sql = "select * from " + TABLE_NAME + " where ID = '" + this->getUserInput().at(0) + "'";
     char *zErrMsg = 0;
     cout << "Looking for staff member's profile with ID " + this->getUserInput().at(0) + "..............................";
     int numResult = 0;
@@ -75,7 +75,7 @@ bool Delete::execute(sqlite3 **db)
                 istringstream parse(sss);
                 if (sss == "Y" || sss == "y")
                 {
-                    sql = "delete from " + TABLE_NAME.at(0) + " where ID = " + this->getUserInput().at(0);
+                    sql = "delete from " + TABLE_NAME + " where ID = " + this->getUserInput().at(0);
                     char *zErrMsg = 0;
                     cout << "Deleting ..............................";
                     // int numResult = 0;

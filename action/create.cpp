@@ -3,7 +3,7 @@
 Create::Create()
 {
     // Initialize user input vector
-    vector<string> v(ALL_FIELDS_TABLE_0.size(), "");
+    vector<string> v(ALL_FIELDS_TABLE.size(), "");
     this->setUserInput(v);
 }
 
@@ -12,10 +12,10 @@ void Create::view()
     cout << "Please provide the details below to create a new profile."
          << "'*' means mandatory" << endl;
 
-    for (int i = 0; i < ALL_FIELDS_TABLE_0.size(); i++)
+    for (int i = 0; i < ALL_FIELDS_TABLE.size(); i++)
     {
-        cout << i + 1 << ". " << ALL_FIELDS_TABLE_0.at(i);
-        if (!VectorExtension::is_element_in_vector(OPTIONAL_FIELDS_TABLE_0, i))
+        cout << i + 1 << ". " << ALL_FIELDS_TABLE.at(i);
+        if (!VectorExtension::is_element_in_vector(OPTIONAL_FIELDS_TABLE, i))
         {
             cout << "*";
         }
@@ -51,14 +51,14 @@ bool Create::askUserInput()
         }
     }
     vector<string> temp = {};
-    for (int i = 0; i < ALL_FIELDS_TABLE_0.size(); i++)
+    for (int i = 0; i < ALL_FIELDS_TABLE.size(); i++)
     {
         // Optional fields
-        if (VectorExtension::is_element_in_vector(OPTIONAL_FIELDS_TABLE_0, i))
+        if (VectorExtension::is_element_in_vector(OPTIONAL_FIELDS_TABLE, i))
         {
             while (true)
             {
-                cout << ALL_FIELDS_TABLE_0.at(i) << " : ";
+                cout << ALL_FIELDS_TABLE.at(i) << " : ";
                 cin.getline(s, 256);
                 string sss(s);
 
@@ -81,13 +81,13 @@ bool Create::askUserInput()
         {
             while (true)
             {
-                cout << ALL_FIELDS_TABLE_0.at(i) << "* : ";
+                cout << ALL_FIELDS_TABLE.at(i) << "* : ";
                 cin.getline(s, 256);
                 string sss(s);
                 while ((trim(sss)).size() == 0)
                 {
-                    cout << ALL_FIELDS_TABLE_0.at(i) << " is required!" << endl;
-                    cout << ALL_FIELDS_TABLE_0.at(i) << "* : ";
+                    cout << ALL_FIELDS_TABLE.at(i) << " is required!" << endl;
+                    cout << ALL_FIELDS_TABLE.at(i) << "* : ";
 
                     cin.getline(s, 256);
                     sss = s;
@@ -111,7 +111,7 @@ bool Create::askUserInput()
          << "Below information summarizes the details you have entered:" << endl;
     for (int j = 0; j < temp.size(); j++)
     {
-        cout << ALL_FIELDS_TABLE_0.at(j) << ": " << temp.at(j) << " " << endl;
+        cout << ALL_FIELDS_TABLE.at(j) << ": " << temp.at(j) << " " << endl;
     }
     cout << "The system will create the profile with the above information. Press ENTER to continue ...";
     while (cin.get() != '\n')
@@ -124,8 +124,8 @@ bool Create::execute(sqlite3 **db)
 {
     // Run by sql
     string userInputTemp = "";
-    string sql = "insert into " + TABLE_NAME.at(0) + " (" +
-                 VectorExtension::vector_to_string(ALL_FIELDS_TABLE_0, ",") +
+    string sql = "insert into " + TABLE_NAME + " (" +
+                 VectorExtension::vector_to_string(ALL_FIELDS_TABLE, ",") +
                  ") values (" +
                  VectorExtension::vector_to_string(this->getUserInput(), ",") +
                  ")";

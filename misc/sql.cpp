@@ -8,6 +8,7 @@ void SQL::connect_database(sqlite3 **db)
 
     if (rcR != SQLITE_OK)
     {
+        cout << "Database not detected!" << endl;
         cout << "Creating database..............................";
     }
     else
@@ -35,10 +36,23 @@ void SQL::connect_database(sqlite3 **db)
 
 void SQL::create_table(sqlite3 **db)
 {
+    string sql_create_table = "create table " + TABLE_NAME + "(ID integer primary key autoincrement,";
+
+    for (int i = 0; i < ALL_FIELDS_TABLE.size(); i++)
+    {
+        string cm = ",";
+        if (i == ALL_FIELDS_TABLE.size() - 1)
+        {
+            cm = "";
+        }
+        sql_create_table += ALL_FIELDS_TABLE.at(i) + " " + DATA_TYPE_N_KEYWORDS.at(i) + cm;
+    }
+    sql_create_table += ");";
+
     char *zErrMsg = 0;
 
     /* Execute SQL statement */
-    int rc = sqlite3_exec(*db, SQL_CREATE_TABLE_0.c_str(), SQL::sql_callback, 0, &zErrMsg);
+    int rc = sqlite3_exec(*db, sql_create_table.c_str(), SQL::sql_callback, 0, &zErrMsg);
     if (rc != SQLITE_OK)
     {
         cerr << "failed!" << endl;
@@ -71,7 +85,7 @@ void SQL::disconnect_database(sqlite3 **db, bool displayMsg)
 }
 
 // SQL callback function for printing records according to SQL enquiry
-int SQL::sql_callback_init_check(void *trackResult, int argc, char **argv, char **azColName)
+int SQL::sql_callback_retrieve_db_records(void *trackResult, int argc, char **argv, char **azColName)
 {
     int *count = (int *)trackResult;
     *count = stoi(argv[0]);

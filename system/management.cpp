@@ -55,11 +55,11 @@ void System::view()
 
 void System::retrieveDatabaseRecords()
 {
-    string sql = "select count(*) from " + TABLE_NAME.at(0);
+    string sql = "select count(*) from " + TABLE_NAME;
     char *zErrMsg = 0;
     int countSql = 0;
     /* Execute SQL statement */
-    int rc = sqlite3_exec(*db, sql.c_str(), SQL::sql_callback_init_check, &countSql, &zErrMsg);
+    int rc = sqlite3_exec(*db, sql.c_str(), SQL::sql_callback_retrieve_db_records, &countSql, &zErrMsg);
     if (rc != SQLITE_OK)
     {
         cerr << "SQL error in " << __func__ << ": " << zErrMsg << endl;
@@ -181,7 +181,6 @@ bool System::execute()
 
     default:
     {
-        cout << "Invalid operation!" << endl;
         return false;
         break;
     }

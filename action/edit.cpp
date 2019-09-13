@@ -47,7 +47,7 @@ bool Edit::askUserInput()
 bool Edit::execute(sqlite3 **db)
 {
     // Run by sql
-    string sql = "select * from " + TABLE_NAME.at(0) + " where id = '" + this->getUserInput().at(0) + "'";
+    string sql = "select * from " + TABLE_NAME + " where id = '" + this->getUserInput().at(0) + "'";
 
     char *zErrMsg = 0;
     cout << "Looking for staff member's profile(s) with ID " + this->getUserInput().at(0) + "..............................";
@@ -111,7 +111,7 @@ bool Edit::execute(sqlite3 **db)
 
 bool Edit::edit(sqlite3 **db)
 {
-    vector<string> temp(ALL_FIELDS_TABLE_0.size(), "");
+    vector<string> temp(ALL_FIELDS_TABLE.size(), "");
     bool editCompleted = false;
     while (!editCompleted)
     {
@@ -128,11 +128,11 @@ bool Edit::edit(sqlite3 **db)
             // Trim whitespace
             sss = trim(sss);
             istringstream parse(sss);
-            if (VectorExtension::is_element_in_vector(ALL_FIELDS_TABLE_0, sss))
+            if (VectorExtension::is_element_in_vector(ALL_FIELDS_TABLE, sss))
             {
-                for (i = 0; i < ALL_FIELDS_TABLE_0.size(); i++)
+                for (i = 0; i < ALL_FIELDS_TABLE.size(); i++)
                 {
-                    if (sss == ALL_FIELDS_TABLE_0.at(i))
+                    if (sss == ALL_FIELDS_TABLE.at(i))
                     {
                         break;
                     }
@@ -152,7 +152,7 @@ bool Edit::edit(sqlite3 **db)
         bool editing = true;
         while (editing)
         {
-            cout << "Please enter " << ALL_FIELDS_TABLE_0.at(i) << " for this staff member." << endl;
+            cout << "Please enter " << ALL_FIELDS_TABLE.at(i) << " for this staff member." << endl;
             cout << "> ";
             cin.getline(sedit, 256);
             string sss(sedit);
@@ -207,11 +207,11 @@ bool Edit::edit(sqlite3 **db)
 
     cout << "Field(s) to be changed for the profile (ID: " << this->getUserInput().at(0) << "):" << endl;
 
-    for (int j = 0; j < ALL_FIELDS_TABLE_0.size(); j++)
+    for (int j = 0; j < ALL_FIELDS_TABLE.size(); j++)
     {
         if (temp.at(j).size() > 0)
         {
-            cout << ALL_FIELDS_TABLE_0.at(j) << ": " << temp.at(j) << endl;
+            cout << ALL_FIELDS_TABLE.at(j) << ": " << temp.at(j) << endl;
         }
     }
 
@@ -221,11 +221,11 @@ bool Edit::edit(sqlite3 **db)
         ;
 
     string sqlColValues = "";
-    for (int k = 0; k < ALL_FIELDS_TABLE_0.size(); k++)
+    for (int k = 0; k < ALL_FIELDS_TABLE.size(); k++)
     {
         if (temp.at(k).size() != 0)
         {
-            sqlColValues += ALL_FIELDS_TABLE_0.at(k) + " = '" + temp.at(k) + "',";
+            sqlColValues += ALL_FIELDS_TABLE.at(k) + " = '" + temp.at(k) + "',";
         }
     }
     if (sqlColValues.size() > 0)
@@ -236,7 +236,7 @@ bool Edit::edit(sqlite3 **db)
         }
     }
 
-    string sql = "update " + TABLE_NAME.at(0) + " set " + sqlColValues + " where ID = '" + this->getUserInput().at(0) + "'";
+    string sql = "update " + TABLE_NAME + " set " + sqlColValues + " where ID = '" + this->getUserInput().at(0) + "'";
     char *zErrMsg = 0;
     cout << "Writing changes to database..............................";
     int numResult = 0;
