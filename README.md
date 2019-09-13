@@ -56,15 +56,15 @@ bin\staff
 ```
 
 ### Build the application (Linux)
-1. Install SQLite3
+##### 1. Install SQLite3
 ```
 $ sudo apt-get install sqlite3 libsqlite3-dev 
 ```
-2. Build the application with SQLite package which was just installed
+##### 2. Build the application with SQLite package which was just installed
 ```
 $ g++ misc/*.cpp system/*.cpp action/*.cpp *.cpp -o bin/staff -lsqlite3
 ```
-3. Run the application (Make sure it is a <b>back</b> slash not a <b>forward</b> slash)
+##### 3. Run the application (Make sure it is a <b>back</b> slash not a <b>forward</b> slash)
 ```
 $ bin/staff
 ```

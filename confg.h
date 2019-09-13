@@ -17,7 +17,7 @@ using namespace std;
 
 const string DBPath = "bin/data.db";
 const string TABLE_NAME = "Staff_Details";
-// "Staff_Details" table
+// Table fields
 const vector<string> ALL_FIELDS_TABLE = {"First_Name", "Middle_Name", "Last_Name", "DOB", "Title", "Department", "Landline", "Mobile", "Email", "Salary"};
 
 /* ---------------------------- View action configuration---------------------------- */
