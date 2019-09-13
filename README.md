@@ -35,7 +35,7 @@ $ sudo apt install build-essential
 #### with Visual Studio Code
 1. Download Visual Studio Code (VS Code) for Windows on https://code.visualstudio.com/, and install it.
 2. Clone this repo via git or click "Clone or download".
-3. Open VS Code once installed, and click "File" -> "Open Folder...", then open the directory with "main.cpp".
+3. Open VS Code once installed, and click "File" -> "Open Folder...", then open the directory where "main.cpp" is.
 4. Press Ctrl + Alt + B. VS Code will automatically run the commands to build and run the appliaction.
 
 #### without Visual Studio Code
@@ -60,6 +60,9 @@ bin\staff
 ```
 $ sudo apt-get install sqlite3 libsqlite3-dev 
 ```
+
+##### 2. Build the application with SQLite package which was just installed
+Browse to the application directory (where the 'main.cpp' is)
 ##### 2. Build the application with SQLite package which was just installed
 ```
 $ g++ misc/*.cpp system/*.cpp action/*.cpp *.cpp -o bin/staff -lsqlite3
