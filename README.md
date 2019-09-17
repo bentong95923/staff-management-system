@@ -22,7 +22,7 @@ Linux (It was only tested on Ubuntu 18.04 LTS but should work fine in any Linux 
 It is required to install the gcc and g++ compiler in order to build the application. <br />
 Suggested source for compiler: <br />
 Windows - Cygwin (http://www.cygwin.com/) <br />
-Linux - by the command as follow: <br />
+Linux - by the command as follow, either run: <br />
 ```
 $ sudo apt install g++
 ```
@@ -39,7 +39,7 @@ $ sudo apt install build-essential
 4. Press Ctrl + Alt + B. VS Code will automatically run the commands to build and run the appliaction.
 
 #### without Visual Studio Code
-1. Clone this repo via git or click "Clone or download".
+1. Clone this repo via git (Git for Windows) or click "Clone or download".
 2. Open Command Prompt or PowerShell, and run the following command lines:
 
 ##### a) Build the SQLite source file
@@ -56,18 +56,20 @@ bin\staff
 ```
 
 ### Build the application (Linux)
-##### 1. Install SQLite3
+##### 1. Clone this repo via git or click "Clone or download".
+
+##### 2. Install SQLite3
 ```
 $ sudo apt-get install sqlite3 libsqlite3-dev 
 ```
 
-##### 2. Build the application with SQLite package which was just installed
+##### 3. Build the application with SQLite package which was just installed
 Browse to the application directory (where the 'main.cpp' is)
-##### 2. Build the application with SQLite package which was just installed
+##### 4. Build the application with SQLite package which was just installed
 ```
 $ g++ misc/*.cpp system/*.cpp action/*.cpp *.cpp -o bin/staff -lsqlite3
 ```
-##### 3. Run the application (Make sure it is a <b>back</b> slash not a <b>forward</b> slash)
+##### 5. Run the application (Make sure it is a <b>back</b> slash not a <b>forward</b> slash)
 ```
 $ bin/staff
 ```
