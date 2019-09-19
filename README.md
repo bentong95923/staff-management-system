@@ -24,7 +24,7 @@ Linux (It was only tested on Ubuntu 18.04 LTS but should work fine in any Linux 
 It is required to install the gcc and g++ compiler in order to build the application. <br />
 Suggested source for compiler: <br />
 Windows - Cygwin (http://www.cygwin.com/) <br />
-Linux - by the command as follow, either run: <br />
+Linux - by following command, either run: <br />
 ```
 $ sudo apt install g++
 ```
