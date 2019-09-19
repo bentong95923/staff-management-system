@@ -18,7 +18,7 @@ using namespace std;
 // Path and name of the database file
 const string DBPath = "bin/data.db";
 const string TABLE_NAME = "Staff_Details";
-// Table fields -- make sure to content Email, First Name and DOB
+// Table fields -- make sure to contain Email, First Name and DOB
 const vector<string> ALL_FIELDS_TABLE = {"First_Name", "Middle_Name", "Last_Name", "DOB", "Title", "Department", "Landline", "Mobile", "Email", "Salary"};
 
 /* ---------------------------- View action configuration---------------------------- */

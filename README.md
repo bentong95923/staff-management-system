@@ -1,7 +1,9 @@
 # Staff Management System
 ###### by Benjamin Tong
 
-This is an CMD application run with SQLite to for a staff management system in an organization. Visual Studio Code is used as the editor and builder of the application. Database will be created to store staff details.
+This is a C++ command line application to manage staff member's profiles in an organization. The profiles are stored in a SQLite database. User can view, create, edit and delete staff member's profile.
+
+Visual studio Code is used for IDE to build this application.
 
 This is one of my self project in which I aim to use different tech and create useful app.
 
